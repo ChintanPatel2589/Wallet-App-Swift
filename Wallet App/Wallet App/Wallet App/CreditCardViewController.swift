@@ -13,6 +13,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     //@IBOutlet var tabBar : UITabBar
     var dataDic = NSMutableDictionary()
     var isEdit = false
+    var isCreditCard = false
     var lastTextField = UITextField()
     
    // var app_obj = UIApplication.sharedApplication().delegate as AppDelegate
@@ -36,10 +37,20 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController.navigationBar.translucent=false
-        self.title="Credit Card"
+        if isCreditCard
+        {
+            self.title="Credit Card"
+            txtType.text="Credit Card"
+        }
+        else
+        {
+            self.title="Debit Card"
+            txtType.text="Debit Card"
+        }
+        
         self.scrollView.contentSize=CGSizeMake(320, 670)
         txtType.enabled=false
-        txtType.text="Credit Card"
+        
         txtType.textColor=UIColor.grayColor()
         if isEdit
         {
@@ -93,19 +104,41 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     }
     func Editdone() //Editing Done Update Data
     {
-        var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update creditCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
-        if editResult
-        {
-            self.lastTextField.resignFirstResponder()
-            scrollView.setContentOffset(CGPointMake(0, -5), animated: true)
-            setTextFieldGrayColor() //Function for set editable false and text color gray
-            var rightDoneBtn = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Bordered, target: self, action: "Edit")
-            self.navigationItem.rightBarButtonItem=rightDoneBtn
+        if isCreditCard{
+            var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update creditCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
+            
+            if editResult
+            {
+                self.lastTextField.resignFirstResponder()
+                scrollView.setContentOffset(CGPointMake(0, -5), animated: true)
+                setTextFieldGrayColor() //Function for set editable false and text color gray
+                var rightDoneBtn = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Bordered, target: self, action: "Edit")
+                self.navigationItem.rightBarButtonItem=rightDoneBtn
+            }
+            else
+            {
+                alert("Error", text: "ooppsss..Something getting Wrong. Please try Again with valid Data.")
+            }
         }
         else
         {
-            alert("Error", text: "ooppsss..Something getting Wrong. Please try Again with valid Data.")
+            var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update DebitCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
+            
+            if editResult
+            {
+                self.lastTextField.resignFirstResponder()
+                scrollView.setContentOffset(CGPointMake(0, -5), animated: true)
+                setTextFieldGrayColor() //Function for set editable false and text color gray
+                var rightDoneBtn = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Bordered, target: self, action: "Edit")
+                self.navigationItem.rightBarButtonItem=rightDoneBtn
+            }
+            else
+            {
+                alert("Error", text: "ooppsss..Something getting Wrong. Please try Again with valid Data.")
+            }
         }
+        
+        
     }
     
     func done() //Save Data Insert New Data
@@ -128,22 +161,43 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
                 return
             }
         }
-        
-        api_Database.createTable("CREATE TABLE IF NOT EXISTS creditCard (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Type TEXT, CardNumber TEXT, ExpMonth TEXT, ExpYear TEXT, CCVCode TEXT, Pin TEXT, iBankingLogin TEXT, loginPassword TEXT, Phone TEXT, Email TEXT, Notes TEXT)", dbName: DATABASENAME)
-        //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
-        
-      var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into creditCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text) as String)
-        
-        if result
+        if isCreditCard
         {
-            self.dismissViewControllerAnimated(true, completion: {
-                NSNotificationCenter.defaultCenter().postNotificationName("viewDismiss", object: nil)
-                })
+            api_Database.createTable("CREATE TABLE IF NOT EXISTS creditCard (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Type TEXT, CardNumber TEXT, ExpMonth TEXT, ExpYear TEXT, CCVCode TEXT, Pin TEXT, iBankingLogin TEXT, loginPassword TEXT, Phone TEXT, Email TEXT, Notes TEXT)", dbName: DATABASENAME)
+            //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
+            
+            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into creditCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text) as String)
+            
+            if result
+            {
+                self.dismissViewControllerAnimated(true, completion: {
+                    NSNotificationCenter.defaultCenter().postNotificationName("viewDismiss", object: nil)
+                    })
+            }
+            else
+            {
+                alert("Error", text: "ooppssss..Something getting wrong. Plase try again.")
+            }
         }
         else
         {
-            alert("Error", text: "ooppssss..Something getting wrong. Plase try again.")
+            api_Database.createTable("CREATE TABLE IF NOT EXISTS DebitCard (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Type TEXT, CardNumber TEXT, ExpMonth TEXT, ExpYear TEXT, CCVCode TEXT, Pin TEXT, iBankingLogin TEXT, loginPassword TEXT, Phone TEXT, Email TEXT, Notes TEXT)", dbName: DATABASENAME)
+            //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
+            
+            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into DebitCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text) as String)
+            
+            if result
+            {
+                self.dismissViewControllerAnimated(true, completion: {
+                    NSNotificationCenter.defaultCenter().postNotificationName("viewDismiss", object: nil)
+                    })
+            }
+            else
+            {
+                alert("Error", text: "ooppssss..Something getting wrong. Plase try again.")
+            }
         }
+       
     }
     func cancel()
     {

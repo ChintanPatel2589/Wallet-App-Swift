@@ -59,7 +59,6 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         {
             arrayDataList=api_Database.selectDataFromDatabase(DATABASENAME, query: "select * from IDPassport") as NSMutableArray
         }
-    
         else if self.selectedItem as String == "Software License"
         {
             arrayDataList=api_Database.selectDataFromDatabase(DATABASENAME, query: "select * from SoftwareLicense") as NSMutableArray
@@ -67,6 +66,10 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         else if self.selectedItem as String == "Secure Notes"
         {
             arrayDataList=api_Database.selectDataFromDatabase(DATABASENAME, query: "select * from SecureNotes") as NSMutableArray
+        }
+        else if self.selectedItem as String == "Debit Card"
+        {
+            arrayDataList=api_Database.selectDataFromDatabase(DATABASENAME, query: "select * from DebitCard") as NSMutableArray
         }
         //
         self.tblView.reloadData()
@@ -76,6 +79,7 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         if self.selectedItem as String == "Credit Card"
         {
             var AddData = self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
+            AddData.isCreditCard=true
             var newTmpNav = UINavigationController(rootViewController: AddData)
             //self.navigationController.presentModalViewController(newTmpNav, animated: true)
             self.navigationController.presentViewController(newTmpNav, animated: true, completion: nil)
@@ -118,8 +122,14 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
             var newTmpNav = UINavigationController(rootViewController: AddData)
             self.navigationController.presentViewController(newTmpNav, animated: true, completion: nil)
         }
-
-        
+        else if self.selectedItem as String == "Debit Card"
+        {
+            var AddData = self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
+            AddData.isCreditCard=false
+            var newTmpNav = UINavigationController(rootViewController: AddData)
+            //self.navigationController.presentModalViewController(newTmpNav, animated: true)
+            self.navigationController.presentViewController(newTmpNav, animated: true, completion: nil)
+        }
     }
 
     func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!)
@@ -175,10 +185,7 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
             lblTitle=cell!.viewWithTag(1) as UILabel
             lblDesc=cell!.viewWithTag(2) as UILabel
         }
-        if self.editing
-        {
-            
-        }
+        
         if self.arrayDataList.count > 0
         {
             if self.selectedItem as String == "Web Login"
@@ -226,6 +233,7 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         {
             var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
             AddDataOB.isEdit=true
+            AddDataOB.isCreditCard=true
             AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
             var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
             self.navigationItem.backBarButtonItem=backBtn
@@ -271,6 +279,16 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         {
             var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("SecureNotes") as SecureNotesViewController
             AddDataOB.isEdit=true
+            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+            self.navigationItem.backBarButtonItem=backBtn
+            self.navigationController.pushViewController(AddDataOB, animated: true)
+        }
+        else if self.selectedItem as String == "Debit Card"
+        {
+            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
+            AddDataOB.isEdit=true
+            AddDataOB.isCreditCard=false
             AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
             var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
             self.navigationItem.backBarButtonItem=backBtn
@@ -349,8 +367,15 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
                         reloadTableData()
                     }
                 }
-                
-               
+                else if self.selectedItem as String == "Debit Card"
+                {
+                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from DebitCard where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                    if result
+                    {
+                        self.arrayDataList.removeAllObjects()
+                        reloadTableData()
+                    }
+                }
             }
         }
     }
@@ -363,5 +388,4 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         // Pass the selected object to the new view controller.
     }
     */
-
 }

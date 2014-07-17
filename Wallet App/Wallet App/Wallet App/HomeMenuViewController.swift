@@ -17,14 +17,29 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "tabBarPressed", name: "tabBarNotification", object: nil)
         
-        
         super.viewDidLoad()
         self.title="Home"
         arrayMenu = ["Credit Card","Debit Card","Bank Account","Web Login","ID or Passport","Software License","Secure Notes"]
+   
+        var logOutBtn = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Bordered, target: self, action:"logout")
+        self.navigationItem.rightBarButtonItem=logOutBtn
         
-        // Do any additional setup after loading the view.
+        //TableView Animation
+        UIView.animateWithDuration(0.7, delay: 0, options: .CurveLinear, animations:
+            {
+                var rtblview = self.tblView.frame as CGRect
+                rtblview.size.height=self.view.frame.size.height;
+                self.tblView.frame=rtblview
+            },
+            completion: {
+                (finished: Bool) in
+                println("finished")
+            });
     }
-  
+  func logout()
+  {
+    self.navigationController.popViewControllerAnimated(true)
+   }
     
     func tabBarPressed()
     {
@@ -44,7 +59,6 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
     }
     func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!)
     {
-        
         app_obj.tabTaggedTag=item.tag
         NSNotificationCenter.defaultCenter().postNotificationName("tabBarNotification", object: nil)
     }
@@ -62,31 +76,23 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
         tabBar.setItems(ArryTabItems, animated: false)
         
         tabBar.selectedItem=ArryTabItems.objectAtIndex(0) as UITabBarItem
-        
     }
 
-    
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
-        
         return arrayMenu.count;
     }
     func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!)
     {
-
         var cellImage = UIImageView(image: UIImage(named: "list_background.png"))
         cell.backgroundView=cellImage
-        
     }
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
         var lblTitle:UILabel
-       
         var cell = tableView.dequeueReusableCellWithIdentifier("MyCell") as? UITableViewCell
-        
         if !cell {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "MyCell")
-            
             lblTitle=UILabel(frame: CGRectMake(10, 15, 200, 21))
             lblTitle.backgroundColor=UIColor.clearColor()
             lblTitle.tag=1
@@ -97,7 +103,6 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
         else
         {
             lblTitle=cell!.viewWithTag(1) as UILabel
-            
         }
         //lblTitle.font.setTitleTextAttributes(NSDictionary(objects: [UIFont(name: "Helvetica", size: 16.0)], forKeys: [NSFontAttributeName]), forState: UIControlState.Normal)
         lblTitle.text=self.arrayMenu.objectAtIndex(indexPath.row) as String
@@ -110,15 +115,12 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
-        
             var dataDisplauOBJ=self.storyboard.instantiateViewControllerWithIdentifier("DataDisplay") as DataDisplayViewController
             dataDisplauOBJ.selectedItem=arrayMenu.objectAtIndex(indexPath.row) as String
             dataDisplauOBJ.title=arrayMenu.objectAtIndex(indexPath.row) as String
             var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
             self.navigationItem.backBarButtonItem=backBtn
             self.navigationController.pushViewController(dataDisplauOBJ, animated: true)
-        
-       
     }
     
     override func didReceiveMemoryWarning() {

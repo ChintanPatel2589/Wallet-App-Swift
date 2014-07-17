@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
         self.title="Login"
         
         btnLogin.layer.borderWidth=3
-        btnLogin.layer.borderColor=UIColor.grayColor().CGColor
+        btnLogin.layer.borderColor=UIColor.whiteColor().CGColor
         btnLogin.layer.cornerRadius=btnLogin.frame.size.width/2
         
         txtPass.becomeFirstResponder()
@@ -56,11 +56,11 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
           self.lblErrorMsg.hidden=false
         }
     }
-    func textFieldDidBeginEditing(textField: UITextField!)
-    {
-        //tet.keyboardAppearance = UIKeyboardAppearanceDark;
-        textField.keyboardAppearance=UIKeyboardAppearance.Dark
-    }
+//    func textFieldDidBeginEditing(textField: UITextField!)
+//    {
+//        //tet.keyboardAppearance = UIKeyboardAppearanceDark;
+//        textField.keyboardAppearance=UIKeyboardAppearance.Dark
+//    }
     func alert(title:NSString, text:NSString)
     {
         let alert = UIAlertView()

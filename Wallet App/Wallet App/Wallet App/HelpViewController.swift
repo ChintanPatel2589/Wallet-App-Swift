@@ -8,14 +8,31 @@
 
 import UIKit
 
-class HelpViewController: UIViewController {
+class HelpViewController: UIViewController,UITabBarDelegate {
 
+    @IBOutlet var tabBar : UITabBar
+    var app_obj = UIApplication.sharedApplication().delegate as AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title="Help"
         // Do any additional setup after loading the view.
     }
-
+     override func viewWillAppear(animated: Bool)
+     {
+        var tabHome=UITabBarItem(title: "Home", image: UIImage(named: "TabHome.png"), tag: 1)
+        var tabSetting=UITabBarItem(title: "Setting", image: UIImage(named: "TabSetting.png"), tag: 2)
+        
+        var ArryTabItems = [tabHome,tabSetting] as NSArray
+        tabBar.setItems(ArryTabItems, animated: false)
+        
+        tabBar.selectedItem=ArryTabItems.objectAtIndex(1) as UITabBarItem
+    }
+    func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!)
+    {
+        app_obj.tabTaggedTag=item.tag
+        NSNotificationCenter.defaultCenter().postNotificationName("tabBarNotification", object: nil)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
