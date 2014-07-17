@@ -28,7 +28,9 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
         super.viewDidLoad()
         self.title="Secure Notes"
         self.navigationController.navigationBar.translucent=false
-        
+        self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController.navigationBar.titleTextAttributes = titleDict
         self.scrollView.contentSize=CGSizeMake(320, 800)
         if isEdit
         {
@@ -93,7 +95,7 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
         api_Database.createTable("CREATE TABLE IF NOT EXISTS SecureNotes (UID TEXT,Name TEXT, OwnerName TEXT, Kind TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         
-        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into SecureNotes(UID,Name,OwnerName,Kind,Notes) values('%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtName.text,txtOwnerName.text,txtKind.text,txtViewNote.text) as String)
+        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into SecureNotes(UID,Name,OwnerName,Kind,Notes) values('%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtName.text,txtOwnerName.text,txtKind.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
         
         if result
         {

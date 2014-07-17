@@ -36,10 +36,11 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
                 println("finished")
             });
     }
-  func logout()
-  {
-    self.navigationController.popViewControllerAnimated(true)
-   }
+    
+    func logout()
+    {
+        self.navigationController.popToRootViewControllerAnimated(true)
+    }
     
     func tabBarPressed()
     {
@@ -51,9 +52,9 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
         }
         else
         {
-            var helpOBJ=self.storyboard.instantiateViewControllerWithIdentifier("Help") as HelpViewController
-            helpOBJ.navigationItem.hidesBackButton=true
-            self.navigationController.pushViewController(helpOBJ, animated: false)
+            var settingOBJ=self.storyboard.instantiateViewControllerWithIdentifier("Setting") as SettingViewController
+            settingOBJ.navigationItem.hidesBackButton=true
+            self.navigationController.pushViewController(settingOBJ, animated: false)
         }
         //println(self.app_obj.tabTaggedTag)
     }

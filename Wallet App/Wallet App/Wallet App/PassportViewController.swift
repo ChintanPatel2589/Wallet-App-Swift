@@ -48,6 +48,9 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
         self.datePicker.maximumDate=NSDate()
         self.title="ID or Passport"
         self.scrollView.contentSize=CGSizeMake(320, 800)
+        self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController.navigationBar.titleTextAttributes = titleDict
         if isEdit
         {
            // println("Data: \(self.dataDic)")
@@ -163,7 +166,7 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
         api_Database.createTable("CREATE TABLE IF NOT EXISTS IDPassport (UID TEXT,Name TEXT, Country TEXT, Category TEXT, ExpMonth TEXT, ExpYear TEXT, IDNumber TEXT, State TEXT,Address1 TEXT,Address2 TEXT,City TEXT,ZIP TEXT,Gender TEXT,DOB TEXT,Occupation TEXT,Company TEXT,Other  TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         
-        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into IDPassport(UID,Name,Country,Category,ExpMonth,ExpYear,IDNumber,State,Address1,Address2,City,ZIP,Gender,DOB,Occupation,Company,Other,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtName.text,txtCountry.text,txtCategory.text,txtExpirationMonth.text,txtExpirationYear.text,txtNumber.text,txtState.text,txtAddress1.text,txtAddress2.text,txtCity.text,txtZIP.text,self.gender,self.btnSelectDate.titleLabel.text,txtOccupation.text,txtCompany.text,txtViewOther.text,txtViewNote.text) as String)
+        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into IDPassport(UID,Name,Country,Category,ExpMonth,ExpYear,IDNumber,State,Address1,Address2,City,ZIP,Gender,DOB,Occupation,Company,Other,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtName.text,txtCountry.text,txtCategory.text,txtExpirationMonth.text,txtExpirationYear.text,txtNumber.text,txtState.text,txtAddress1.text,txtAddress2.text,txtCity.text,txtZIP.text,self.gender,self.btnSelectDate.titleLabel.text,txtOccupation.text,txtCompany.text,txtViewOther.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil),txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
         
         if result
         {

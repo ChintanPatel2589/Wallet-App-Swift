@@ -37,6 +37,8 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController.navigationBar.translucent=false
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController.navigationBar.titleTextAttributes = titleDict
         if isCreditCard
         {
             self.title="Credit Card"
@@ -47,7 +49,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
             self.title="Debit Card"
             txtType.text="Debit Card"
         }
-        
+        self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
         self.scrollView.contentSize=CGSizeMake(320, 670)
         txtType.enabled=false
         
@@ -184,7 +186,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
             api_Database.createTable("CREATE TABLE IF NOT EXISTS DebitCard (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Type TEXT, CardNumber TEXT, ExpMonth TEXT, ExpYear TEXT, CCVCode TEXT, Pin TEXT, iBankingLogin TEXT, loginPassword TEXT, Phone TEXT, Email TEXT, Notes TEXT)", dbName: DATABASENAME)
             //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
             
-            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into DebitCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text) as String)
+            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into DebitCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
             
             if result
             {

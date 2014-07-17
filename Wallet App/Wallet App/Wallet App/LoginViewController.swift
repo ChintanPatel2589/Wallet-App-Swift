@@ -24,11 +24,12 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
         btnLogin.layer.borderColor=UIColor.whiteColor().CGColor
         btnLogin.layer.cornerRadius=btnLogin.frame.size.width/2
         
-        txtPass.becomeFirstResponder()
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool)
     {
+        txtPass.becomeFirstResponder()
         self.navigationController.navigationBar.hidden=false
         //self.tabBarController.tabBar.hidden=true
         UIApplication.sharedApplication().statusBarHidden=false

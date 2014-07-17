@@ -30,6 +30,9 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
             self.title="Web Login"
         self.navigationController.navigationBar.translucent=false
             self.scrollView.contentSize=CGSizeMake(320, 450)
+        self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController.navigationBar.titleTextAttributes = titleDict
             // Do any additional setup after loading the view.
             if isEdit
             {
@@ -98,7 +101,7 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
         api_Database.createTable("CREATE TABLE IF NOT EXISTS webLogin (UID TEXT,AccountName TEXT, Name TEXT, Category TEXT, Currency TEXT, Login TEXT, Password TEXT, Website TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         
-        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into webLogin(UID,AccountName,Name,Category,Currency,Login,Password,Website,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtAccountName.text,txtOwnerName.text,txtCategory.text,txtCurrency.text,txtLogin.text,txtPassword.text,txtWebsite.text,txtViewNote.text) as String)
+        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into webLogin(UID,AccountName,Name,Category,Currency,Login,Password,Website,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtAccountName.text,txtOwnerName.text,txtCategory.text,txtCurrency.text,txtLogin.text,txtPassword.text,txtWebsite.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
     
             if result
             {

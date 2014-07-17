@@ -37,6 +37,9 @@ class SoftwareLicenseViewController: UIViewController,UITabBarDelegate,UITextFie
         self.navigationController.navigationBar.translucent=false
         self.datePicker.maximumDate=NSDate()
         self.scrollView.contentSize=CGSizeMake(320, 800)
+        self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController.navigationBar.titleTextAttributes = titleDict
         if isEdit
         {
            
@@ -107,7 +110,7 @@ class SoftwareLicenseViewController: UIViewController,UITabBarDelegate,UITextFie
         api_Database.createTable("CREATE TABLE IF NOT EXISTS SoftwareLicense (UID TEXT,SoftwareName TEXT, OwnerName TEXT, CompanyNmae TEXT, PurchaseDate TEXT, Email TEXT, LicenseKey TEXT, Website TEXT,SupportEmail TEXT,Phone TEXT,Price TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         
-        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into SoftwareLicense(UID,SoftwareName,OwnerName,CompanyNmae,PurchaseDate,Email,LicenseKey,Website,SupportEmail,Phone,Price,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtSoftwareName.text,txtOwnerName.text,txtCompanyName.text,txtPurchaseDate.text,txtEmail.text,txtLicenseKey.text,txtWebsite.text,txtSupportEmail.text,txtPhone.text,txtPrice.text,txtViewNote.text) as String)
+        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into SoftwareLicense(UID,SoftwareName,OwnerName,CompanyNmae,PurchaseDate,Email,LicenseKey,Website,SupportEmail,Phone,Price,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtSoftwareName.text,txtOwnerName.text,txtCompanyName.text,txtPurchaseDate.text,txtEmail.text,txtLicenseKey.text,txtWebsite.text,txtSupportEmail.text,txtPhone.text,txtPrice.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
         
         if result
         {

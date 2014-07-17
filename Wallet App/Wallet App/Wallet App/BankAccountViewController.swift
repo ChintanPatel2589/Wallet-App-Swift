@@ -39,6 +39,9 @@ class BankAccountViewController: UIViewController ,UITabBarDelegate,UITextFieldD
         self.title="Bank Account"
         self.scrollView.contentSize=CGSizeMake(320, 670)
         self.navigationController.navigationBar.translucent=false
+        self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController.navigationBar.titleTextAttributes = titleDict
         // Do any additional setup after loading the view.
     if isEdit
     {
@@ -113,7 +116,7 @@ func done() //Save Data Insert New Data
     api_Database.createTable("CREATE TABLE IF NOT EXISTS bankAccount (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Currency TEXT, AccountNumber TEXT, BankCode TEXT, Swift TEXT, IBAN TEXT, PIN TEXT, Website TEXT, Phone TEXT,Address TEXT, Notes TEXT)", dbName: DATABASENAME)
     //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
     
-    var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into bankAccount(UID,BankName,Name,Category,Currency,AccountNumber,BankCode,Swift,IBAN,Pin,Website,Phone,Address,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtCurrency.text,txtNumber.text,txtBankCode.text,txtSwift.text,txtIBAN.text,txtPin.text,txtiBankingWebSite.text,txtPhone.text,txtAddress.text,txtViewNote.text) as String)
+    var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into bankAccount(UID,BankName,Name,Category,Currency,AccountNumber,BankCode,Swift,IBAN,Pin,Website,Phone,Address,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtCurrency.text,txtNumber.text,txtBankCode.text,txtSwift.text,txtIBAN.text,txtPin.text,txtiBankingWebSite.text,txtPhone.text,txtAddress.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
     
     if result
     {

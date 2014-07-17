@@ -36,9 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window.rootViewController=nav
             }
         }
-
-       
-        return true
+       return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

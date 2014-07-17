@@ -16,7 +16,7 @@
 		141F5CB4195AE963007612C0 /* HomeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F5CB3195AE963007612C0 /* HomeMenuViewController.swift */; };
 		141F9017195C17790021AD16 /* TabHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141F9016195C17790021AD16 /* TabHome@2x.png */; };
 		141F9019195C1CF60021AD16 /* TabSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141F9018195C1CF60021AD16 /* TabSetting@2x.png */; };
-		141F901B195C26A90021AD16 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F901A195C26A90021AD16 /* HelpViewController.swift */; };
+		141F901B195C26A90021AD16 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141F901A195C26A90021AD16 /* SettingViewController.swift */; };
 		1470AB94195BE4D1000FC0B0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1470AB93195BE4D1000FC0B0 /* MessageUI.framework */; };
 		1470AB96195BF3C4000FC0B0 /* list_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1470AB95195BF3C4000FC0B0 /* list_background@2x.png */; };
 		1470AB98195BF637000FC0B0 /* MavenPro in Resources */ = {isa = PBXBuildFile; fileRef = 1470AB97195BF637000FC0B0 /* MavenPro */; };
@@ -37,6 +37,10 @@
 		593EFF721974F4DD00816DBE /* SecureNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EFF711974F4DD00816DBE /* SecureNotesViewController.swift */; };
 		599AADAF19752E5100B0E28C /* Secure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 599AADAE19752E5100B0E28C /* Secure.jpg */; };
 		599AADB119752F6100B0E28C /* LockHomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 599AADB019752F6100B0E28C /* LockHomeIcon.png */; };
+		59AC7DD819779F2200457944 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 59AC7DD719779F2200457944 /* Setting.png */; };
+		59AC7DDA1977A20300457944 /* BlurBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59AC7DD91977A20300457944 /* BlurBack.jpg */; };
+		59AC7DDC1977A84B00457944 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */; };
+		59AC7DDE1977D9B400457944 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +65,7 @@
 		141F5CB3195AE963007612C0 /* HomeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMenuViewController.swift; sourceTree = "<group>"; };
 		141F9016195C17790021AD16 /* TabHome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabHome@2x.png"; sourceTree = "<group>"; };
 		141F9018195C1CF60021AD16 /* TabSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabSetting@2x.png"; sourceTree = "<group>"; };
-		141F901A195C26A90021AD16 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		141F901A195C26A90021AD16 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		1470AB93195BE4D1000FC0B0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1470AB95195BF3C4000FC0B0 /* list_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_background@2x.png"; sourceTree = "<group>"; };
 		1470AB97195BF637000FC0B0 /* MavenPro */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MavenPro; sourceTree = "<group>"; };
@@ -86,6 +90,10 @@
 		593EFF711974F4DD00816DBE /* SecureNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureNotesViewController.swift; sourceTree = "<group>"; };
 		599AADAE19752E5100B0E28C /* Secure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Secure.jpg; sourceTree = "<group>"; };
 		599AADB019752F6100B0E28C /* LockHomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockHomeIcon.png; sourceTree = "<group>"; };
+		59AC7DD719779F2200457944 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
+		59AC7DD91977A20300457944 /* BlurBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BlurBack.jpg; sourceTree = "<group>"; };
+		59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +192,8 @@
 		14A9B268195A96A200E501D0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				59AC7DD91977A20300457944 /* BlurBack.jpg */,
+				59AC7DD719779F2200457944 /* Setting.png */,
 				599AADB019752F6100B0E28C /* LockHomeIcon.png */,
 				599AADAE19752E5100B0E28C /* Secure.jpg */,
 				141F9016195C17790021AD16 /* TabHome@2x.png */,
@@ -218,7 +228,9 @@
 				14CD254B1963E37400BE338A /* PassportViewController.swift */,
 				593AFEBE19739BBE00EF23DF /* SoftwareLicenseViewController.swift */,
 				593EFF711974F4DD00816DBE /* SecureNotesViewController.swift */,
-				141F901A195C26A90021AD16 /* HelpViewController.swift */,
+				141F901A195C26A90021AD16 /* SettingViewController.swift */,
+				59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */,
+				59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -305,11 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				141F9017195C17790021AD16 /* TabHome@2x.png in Resources */,
+				59AC7DDA1977A20300457944 /* BlurBack.jpg in Resources */,
 				1470AB98195BF637000FC0B0 /* MavenPro in Resources */,
 				14A9B251195A94C100E501D0 /* Main.storyboard in Resources */,
 				14A9B253195A94C100E501D0 /* Images.xcassets in Resources */,
 				14A9B26D195A96CF00E501D0 /* RadioUnchecked.png in Resources */,
 				141F5CAF195AE705007612C0 /* WalletAppDB.sqlite in Resources */,
+				59AC7DD819779F2200457944 /* Setting.png in Resources */,
 				599AADB119752F6100B0E28C /* LockHomeIcon.png in Resources */,
 				14A9B26C195A96CF00E501D0 /* RadioChecked.png in Resources */,
 				1470AB96195BF3C4000FC0B0 /* list_background@2x.png in Resources */,
@@ -333,9 +347,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				141F901B195C26A90021AD16 /* HelpViewController.swift in Sources */,
+				141F901B195C26A90021AD16 /* SettingViewController.swift in Sources */,
 				141F5CB0195AE705007612C0 /* api_Database.m in Sources */,
+				59AC7DDE1977D9B400457944 /* AboutAppViewController.swift in Sources */,
 				141F5CA9195AD263007612C0 /* LoginViewController.swift in Sources */,
+				59AC7DDC1977A84B00457944 /* ChangePasswordViewController.swift in Sources */,
 				593EFF721974F4DD00816DBE /* SecureNotesViewController.swift in Sources */,
 				593AFEBF19739BBE00EF23DF /* SoftwareLicenseViewController.swift in Sources */,
 				141F5CA7195ABE62007612C0 /* RegisterViewController.swift in Sources */,
