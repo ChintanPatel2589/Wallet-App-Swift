@@ -23,9 +23,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oeL-93-VMP">
-                                        <rect key="frame" x="79" y="87" width="25" height="25"/>
+                                        <rect key="frame" x="75" y="84" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="RadioUnchecked.png">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -33,9 +33,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Max-yT-JGN">
-                                        <rect key="frame" x="79" y="127" width="25" height="25"/>
+                                        <rect key="frame" x="75" y="124" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="RadioUnchecked.png">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -100,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841.33333333333326" y="436.64999999999998"/>
+            <point key="canvasLocation" x="841" y="436"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="NEc-0S-ter">
@@ -1249,7 +1249,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="00i-eW-VTJ">
                                         <rect key="frame" x="107" y="392" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="RadioUnchecked.png">
+                                        <state key="normal" image="RadioUnChecked.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1273,7 +1273,7 @@
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="28N-Nz-dlC">
                                         <rect key="frame" x="185" y="392" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="RadioUnchecked.png">
+                                        <state key="normal" image="RadioUnChecked.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1677,7 +1677,7 @@
     </scenes>
     <resources>
         <image name="BlurBack.jpg" width="520" height="245"/>
-        <image name="RadioUnchecked.png" width="32" height="32"/>
+        <image name="RadioUnChecked.png" width="16" height="16"/>
         <image name="Secure.jpg" width="1280" height="750"/>
         <image name="Setting.png" width="128" height="128"/>
         <image name="security.png" width="256" height="256"/>

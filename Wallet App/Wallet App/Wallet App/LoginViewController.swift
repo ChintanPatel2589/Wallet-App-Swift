@@ -67,7 +67,7 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
         let alert = UIAlertView()
         alert.title = title
         alert.message = text
-        alert.addButtonWithTitle("ok")
+        alert.addButtonWithTitle("Ok")
         alert.tag=101
         alert.delegate=self
         alert.show()

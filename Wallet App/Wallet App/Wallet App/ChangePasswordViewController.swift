@@ -18,7 +18,7 @@ class ChangePasswordViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet var txtConfirmPass : UITextField
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.navigationController.navigationBar.translucent=false
+        self.navigationController.navigationBar.translucent=false
         self.title = "Change Password"
         self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
@@ -32,6 +32,7 @@ class ChangePasswordViewController: UIViewController,UITextFieldDelegate {
         btnDone.layer.borderWidth=2.5
         btnDone.layer.borderColor=UIColor.whiteColor().CGColor
         btnDone.layer.cornerRadius=btnDone.frame.size.width/2
+        
         
         txtCurrentPass.becomeFirstResponder()
         // Do any additional setup after loading the view.
@@ -74,14 +75,14 @@ class ChangePasswordViewController: UIViewController,UITextFieldDelegate {
         NSUserDefaults.standardUserDefaults().setObject("", forKey: "Password")
         NSUserDefaults.standardUserDefaults().setObject(self.txtNewPass.text as String, forKey: "Password")
        // println(NSUserDefaults.standardUserDefaults().objectForKey("Password"))
-         self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     func alert(title:NSString, text:NSString)
     {
         let alert = UIAlertView()
         alert.title = title
         alert.message = text
-        alert.addButtonWithTitle("ok")
+        alert.addButtonWithTitle("Ok")
         alert.tag=101
         alert.delegate=self
         alert.show()

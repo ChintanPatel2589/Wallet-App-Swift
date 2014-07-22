@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         btnLogin.layer.borderWidth=1
         btnLogin.layer.borderColor=UIColor.redColor().CGColor
         btnLogin.layer.cornerRadius=10
@@ -29,8 +28,9 @@ class ViewController: UIViewController {
         self.navigationController.navigationBar.hidden=true 
         //self.tabBarController.tabBar.hidden=true
         UIApplication.sharedApplication().statusBarHidden=false
+        btnTouchID.setImage(UIImage(named: "RadioUnChecked.png") as UIImage, forState: UIControlState.Normal)
+        btnTraditional.setImage(UIImage(named: "RadioUnChecked.png") as UIImage, forState: UIControlState.Normal)
     }
-    
     @IBAction func checlLoginType(sender:UIButton)
     {
         if sender.tag == 1
@@ -55,7 +55,6 @@ class ViewController: UIViewController {
             var regiOBJ=self.storyboard.instantiateViewControllerWithIdentifier("Register") as RegisterViewController
             self.navigationController.pushViewController(regiOBJ, animated: true)
         }
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

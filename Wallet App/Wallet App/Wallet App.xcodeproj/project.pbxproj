@@ -27,8 +27,8 @@
 		14A9B251195A94C100E501D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B24F195A94C100E501D0 /* Main.storyboard */; };
 		14A9B253195A94C100E501D0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B252195A94C100E501D0 /* Images.xcassets */; };
 		14A9B25F195A94C100E501D0 /* Wallet_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A9B25E195A94C100E501D0 /* Wallet_AppTests.swift */; };
-		14A9B26C195A96CF00E501D0 /* RadioChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B26A195A96CF00E501D0 /* RadioChecked.png */; };
-		14A9B26D195A96CF00E501D0 /* RadioUnchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B26B195A96CF00E501D0 /* RadioUnchecked.png */; };
+		14A9B26C195A96CF00E501D0 /* RadioChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B26A195A96CF00E501D0 /* RadioChecked@2x.png */; };
+		14A9B26D195A96CF00E501D0 /* RadioUnChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B26B195A96CF00E501D0 /* RadioUnChecked@2x.png */; };
 		14A9B26F195AA50D00E501D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A9B26E195AA50D00E501D0 /* QuartzCore.framework */; };
 		14A9B274195AA6EB00E501D0 /* security.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A9B273195AA6EB00E501D0 /* security.png */; };
 		14B3B515195D2B580096D1A7 /* CreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3B514195D2B580096D1A7 /* CreditCardViewController.swift */; };
@@ -80,8 +80,8 @@
 		14A9B258195A94C100E501D0 /* Wallet AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wallet AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A9B25D195A94C100E501D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14A9B25E195A94C100E501D0 /* Wallet_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet_AppTests.swift; sourceTree = "<group>"; };
-		14A9B26A195A96CF00E501D0 /* RadioChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RadioChecked.png; sourceTree = "<group>"; };
-		14A9B26B195A96CF00E501D0 /* RadioUnchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RadioUnchecked.png; sourceTree = "<group>"; };
+		14A9B26A195A96CF00E501D0 /* RadioChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioChecked@2x.png"; sourceTree = "<group>"; };
+		14A9B26B195A96CF00E501D0 /* RadioUnChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioUnChecked@2x.png"; sourceTree = "<group>"; };
 		14A9B26E195AA50D00E501D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		14A9B273195AA6EB00E501D0 /* security.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = security.png; sourceTree = "<group>"; };
 		14B3B514195D2B580096D1A7 /* CreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardViewController.swift; sourceTree = "<group>"; };
@@ -208,8 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				14A9B273195AA6EB00E501D0 /* security.png */,
-				14A9B26A195A96CF00E501D0 /* RadioChecked.png */,
-				14A9B26B195A96CF00E501D0 /* RadioUnchecked.png */,
+				14A9B26A195A96CF00E501D0 /* RadioChecked@2x.png */,
+				14A9B26B195A96CF00E501D0 /* RadioUnChecked@2x.png */,
 			);
 			name = "Login Type";
 			sourceTree = "<group>";
@@ -321,11 +321,11 @@
 				1470AB98195BF637000FC0B0 /* MavenPro in Resources */,
 				14A9B251195A94C100E501D0 /* Main.storyboard in Resources */,
 				14A9B253195A94C100E501D0 /* Images.xcassets in Resources */,
-				14A9B26D195A96CF00E501D0 /* RadioUnchecked.png in Resources */,
+				14A9B26D195A96CF00E501D0 /* RadioUnChecked@2x.png in Resources */,
 				141F5CAF195AE705007612C0 /* WalletAppDB.sqlite in Resources */,
 				59AC7DD819779F2200457944 /* Setting.png in Resources */,
 				599AADB119752F6100B0E28C /* LockHomeIcon.png in Resources */,
-				14A9B26C195A96CF00E501D0 /* RadioChecked.png in Resources */,
+				14A9B26C195A96CF00E501D0 /* RadioChecked@2x.png in Resources */,
 				1470AB96195BF3C4000FC0B0 /* list_background@2x.png in Resources */,
 				14A9B274195AA6EB00E501D0 /* security.png in Resources */,
 				599AADAF19752E5100B0E28C /* Secure.jpg in Resources */,
