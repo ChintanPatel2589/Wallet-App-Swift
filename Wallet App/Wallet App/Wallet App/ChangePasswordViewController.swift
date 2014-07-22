@@ -45,19 +45,19 @@ class ChangePasswordViewController: UIViewController,UITextFieldDelegate {
     {
         if txtCurrentPass.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter Current Password.")
+            self.alert("Error", text: "Please enter Current Password.")
             self.txtCurrentPass.becomeFirstResponder()
             return
         }
         if txtNewPass.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter New Password.")
+            self.alert("Error", text: "Please enter New Password.")
             self.txtNewPass.becomeFirstResponder()
             return
         }
         if txtConfirmPass.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter Confirm Password.")
+            self.alert("Error", text: "Please enter Confirm Password.")
             self.txtConfirmPass.becomeFirstResponder()
             return
         }
@@ -79,6 +79,7 @@ class ChangePasswordViewController: UIViewController,UITextFieldDelegate {
     }
     func alert(title:NSString, text:NSString)
     {
+        
         let alert = UIAlertView()
         alert.title = title
         alert.message = text

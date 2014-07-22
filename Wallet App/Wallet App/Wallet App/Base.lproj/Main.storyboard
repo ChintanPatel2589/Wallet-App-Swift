@@ -42,19 +42,27 @@
                                             <action selector="checlLoginType:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tXR-pR-ILL"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditional" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIH-fL-cwT">
+                                    <label opaque="NO" clipsSubviews="YES" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traditional" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIH-fL-cwT">
                                         <rect key="frame" x="108" y="89" width="110" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="RAi-SA-a8r" appends="YES" id="Qao-RX-fpE"/>
+                                        </connections>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gQ-Qa-n18">
+                                    <label opaque="NO" clipsSubviews="YES" tag="12" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gQ-Qa-n18">
                                         <rect key="frame" x="108" y="129" width="110" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="pBg-th-cjy" appends="YES" id="qMf-6W-tAJ"/>
+                                        </connections>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select How you Want to Login?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4P9-na-lcM">
                                         <rect key="frame" x="22" y="15" width="237" height="41"/>
@@ -99,6 +107,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="RAi-SA-a8r">
+                    <connections>
+                        <action selector="checkLoginTypeLabel:" destination="vXZ-lx-hvc" id="bJr-b6-dgb"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="pBg-th-cjy">
+                    <connections>
+                        <action selector="checkLoginTypeLabel:" destination="vXZ-lx-hvc" id="S3X-GL-gK5"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="841" y="436"/>
         </scene>
@@ -505,17 +523,8 @@
                                             <outlet property="delegate" destination="qHU-SD-oKW" id="AcI-0l-Cig"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category eg. Credit Card" minimumFontSize="17" clearButtonMode="whileEditing" id="eng-Jl-5tU">
-                                        <rect key="frame" x="16" y="86" width="289" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="qHU-SD-oKW" id="BnI-bn-I9q"/>
-                                        </connections>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type eg. VISA,Master Card" minimumFontSize="17" clearButtonMode="whileEditing" id="0Dt-Jb-3Z5">
-                                        <rect key="frame" x="16" y="124" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="86" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -524,7 +533,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Number" minimumFontSize="17" clearButtonMode="whileEditing" id="3Ef-b9-aCl">
-                                        <rect key="frame" x="16" y="162" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="124" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -533,7 +542,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Year" minimumFontSize="17" clearButtonMode="whileEditing" id="Wyl-wE-zjk">
-                                        <rect key="frame" x="220" y="200" width="85" height="30"/>
+                                        <rect key="frame" x="220" y="162" width="85" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -542,7 +551,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CCV Code" minimumFontSize="17" clearButtonMode="whileEditing" id="s8g-qk-krA">
-                                        <rect key="frame" x="16" y="238" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="200" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -551,7 +560,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PIN" minimumFontSize="17" clearButtonMode="whileEditing" id="lK6-iD-Tek">
-                                        <rect key="frame" x="16" y="276" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="238" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
@@ -560,7 +569,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="iBanking" minimumFontSize="17" clearButtonMode="whileEditing" id="aV4-1L-8cA">
-                                        <rect key="frame" x="16" y="314" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="276" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -569,7 +578,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login Internet Banking " minimumFontSize="17" clearButtonMode="whileEditing" id="erJ-ae-zn9">
-                                        <rect key="frame" x="16" y="352" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="314" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -578,7 +587,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password Internet Banking " minimumFontSize="17" clearButtonMode="whileEditing" id="dbu-4M-Av8">
-                                        <rect key="frame" x="16" y="390" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="352" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -587,7 +596,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Support" minimumFontSize="17" clearButtonMode="whileEditing" id="JL9-oD-uD5">
-                                        <rect key="frame" x="16" y="428" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="390" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -596,7 +605,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" minimumFontSize="17" clearButtonMode="whileEditing" id="NME-cw-wgh">
-                                        <rect key="frame" x="16" y="466" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="428" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -605,7 +614,7 @@
                                         </connections>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qNZ-WM-rZ6">
-                                        <rect key="frame" x="16" y="526" width="289" height="130"/>
+                                        <rect key="frame" x="16" y="488" width="289" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -615,21 +624,21 @@
                                         </connections>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wir-TP-pf5">
-                                        <rect key="frame" x="16" y="504" width="62" height="21"/>
+                                        <rect key="frame" x="16" y="466" width="62" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EBB-X4-z6O">
-                                        <rect key="frame" x="17" y="204" width="138" height="21"/>
+                                        <rect key="frame" x="17" y="166" width="138" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Month" minimumFontSize="17" clearButtonMode="whileEditing" id="c07-Vo-SzS">
-                                        <rect key="frame" x="140" y="200" width="78" height="30"/>
+                                        <rect key="frame" x="140" y="162" width="78" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -651,7 +660,6 @@
                         <outlet property="scrollView" destination="FUG-Sq-hsr" id="wKb-kW-tGI"/>
                         <outlet property="txtBankName" destination="iV7-IS-GUe" id="eJo-Y5-5As"/>
                         <outlet property="txtCCV" destination="s8g-qk-krA" id="9Id-gI-8fU"/>
-                        <outlet property="txtCategory" destination="eng-Jl-5tU" id="cKj-Pa-0I6"/>
                         <outlet property="txtContactEmail" destination="NME-cw-wgh" id="zpe-86-Ob4"/>
                         <outlet property="txtExpirationMonth" destination="c07-Vo-SzS" id="jeE-lf-YB6"/>
                         <outlet property="txtExpirationYear" destination="Wyl-wE-zjk" id="gku-7d-WZf"/>
@@ -793,17 +801,8 @@
                                             <outlet property="delegate" destination="qrV-dE-axm" id="Ruk-ZD-IXQ"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Currency" minimumFontSize="17" clearButtonMode="whileEditing" id="VL5-c4-3q7">
-                                        <rect key="frame" x="16" y="124" width="289" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="qrV-dE-axm" id="9DY-rO-aYt"/>
-                                        </connections>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Account Number" minimumFontSize="17" clearButtonMode="whileEditing" id="s7Q-YH-GFf">
-                                        <rect key="frame" x="16" y="162" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="124" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -818,6 +817,15 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="qrV-dE-axm" id="Xs9-ht-ZOw"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Branch Name" minimumFontSize="17" clearButtonMode="whileEditing" id="es2-H5-9W8">
+                                        <rect key="frame" x="16" y="162" width="289" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qrV-dE-axm" id="BSF-hq-Jqe"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SWIFT" minimumFontSize="17" clearButtonMode="whileEditing" id="FN6-a4-nrY">
@@ -839,7 +847,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PIN" minimumFontSize="17" clearButtonMode="whileEditing" id="1Yw-vO-o4Q">
-                                        <rect key="frame" x="16" y="314" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="390" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -848,7 +856,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Internet Banking Website" minimumFontSize="17" clearButtonMode="whileEditing" id="8Nb-EF-2Op">
-                                        <rect key="frame" x="16" y="352" width="289" height="30"/>
+                                        <rect key="frame" x="16" y="314" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -856,8 +864,8 @@
                                             <outlet property="delegate" destination="qrV-dE-axm" id="q4J-ao-buy"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Support" minimumFontSize="17" clearButtonMode="whileEditing" id="4xp-nD-82N">
-                                        <rect key="frame" x="16" y="390" width="289" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Banking No" minimumFontSize="17" clearButtonMode="whileEditing" id="4xp-nD-82N">
+                                        <rect key="frame" x="16" y="428" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -865,8 +873,8 @@
                                             <outlet property="delegate" destination="qrV-dE-axm" id="V9m-wB-FZA"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" minimumFontSize="17" clearButtonMode="whileEditing" id="kmn-GE-Pa7">
-                                        <rect key="frame" x="16" y="428" width="289" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address Line 1" minimumFontSize="17" clearButtonMode="whileEditing" id="kmn-GE-Pa7">
+                                        <rect key="frame" x="16" y="466" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -874,8 +882,17 @@
                                             <outlet property="delegate" destination="qrV-dE-axm" id="cfA-kY-c1O"/>
                                         </connections>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address Line 2" minimumFontSize="17" clearButtonMode="whileEditing" id="hdl-Sj-E69">
+                                        <rect key="frame" x="16" y="504" width="289" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qrV-dE-axm" id="1au-f5-yiv"/>
+                                        </connections>
+                                    </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ru6-sC-FIs">
-                                        <rect key="frame" x="16" y="488" width="289" height="130"/>
+                                        <rect key="frame" x="16" y="564" width="289" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -885,15 +902,61 @@
                                         </connections>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AEL-zV-5hQ">
-                                        <rect key="frame" x="16" y="466" width="62" height="21"/>
+                                        <rect key="frame" x="16" y="542" width="62" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="iBanking UserID" minimumFontSize="17" clearButtonMode="whileEditing" id="YPU-bp-yLe">
+                                        <rect key="frame" x="16" y="352" width="289" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="qrV-dE-axm" id="edJ-31-OsR"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" id="f6x-ZN-WOL">
+                                <rect key="frame" x="0.0" y="580" width="320" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1R8-K9-6J0">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="Cancel" id="CoD-l6-xpR">
+                                                <connections>
+                                                    <action selector="tooBarCancel" destination="qrV-dE-axm" id="gRp-zF-N7w"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="lCs-DF-IGX"/>
+                                            <barButtonItem enabled="NO" title="Accout Type" id="NR0-9B-ijd">
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="i1P-Qp-eeQ"/>
+                                            <barButtonItem title="Done" id="LUg-YB-l7m">
+                                                <connections>
+                                                    <action selector="toolBarDone" destination="qrV-dE-axm" id="rYn-kD-Zzz"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </toolbar>
+                                    <pickerView contentMode="scaleToFill" id="lAZ-gV-6QB">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="qrV-dE-axm" id="UPb-fT-V1p"/>
+                                            <outlet property="delegate" destination="qrV-dE-axm" id="PcW-tx-xZg"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -902,20 +965,24 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="900"/>
                     <connections>
+                        <outlet property="pickerView" destination="lAZ-gV-6QB" id="kcg-Al-oAe"/>
                         <outlet property="scrollView" destination="J02-oe-FyR" id="sJr-p0-fNg"/>
-                        <outlet property="txtAddress" destination="kmn-GE-Pa7" id="a27-nX-LQW"/>
+                        <outlet property="txtAddress1" destination="kmn-GE-Pa7" id="ve0-U0-6CS"/>
+                        <outlet property="txtAddress2" destination="hdl-Sj-E69" id="Yno-7a-2H3"/>
                         <outlet property="txtBankCode" destination="7Ke-jA-owr" id="fpP-kg-3Ye"/>
                         <outlet property="txtBankName" destination="UVI-RZ-D6c" id="2HO-7g-jwc"/>
+                        <outlet property="txtBranchName" destination="es2-H5-9W8" id="Tw4-Rb-frb"/>
                         <outlet property="txtCategory" destination="ReQ-QK-uoL" id="Fyc-Lh-Kgf"/>
-                        <outlet property="txtCurrency" destination="VL5-c4-3q7" id="M7m-ob-SNH"/>
                         <outlet property="txtIBAN" destination="Kzn-ZJ-yZW" id="wcY-Tb-2Md"/>
                         <outlet property="txtNumber" destination="s7Q-YH-GFf" id="9XW-A7-EjN"/>
                         <outlet property="txtOwnerName" destination="ozF-jx-XhP" id="FNw-Sj-O7C"/>
                         <outlet property="txtPhone" destination="4xp-nD-82N" id="vbn-nk-ocL"/>
                         <outlet property="txtPin" destination="1Yw-vO-o4Q" id="on2-wB-f6W"/>
                         <outlet property="txtSwift" destination="FN6-a4-nrY" id="QCv-67-vNw"/>
+                        <outlet property="txtUserID" destination="YPU-bp-yLe" id="vgh-8n-skW"/>
                         <outlet property="txtViewNote" destination="ru6-sC-FIs" id="N35-tA-Ah0"/>
                         <outlet property="txtiBankingWebSite" destination="8Nb-EF-2Op" id="9pO-Jg-90A"/>
+                        <outlet property="viewPicker" destination="f6x-ZN-WOL" id="PBp-yh-3rv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFv-WE-ggY" userLabel="First Responder" sceneMemberID="firstResponder"/>

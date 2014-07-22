@@ -128,6 +128,7 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
     }
     func alert(title:NSString, text:NSString)
     {
+        
         let alert = UIAlertView()
         alert.title = title
         alert.message = text

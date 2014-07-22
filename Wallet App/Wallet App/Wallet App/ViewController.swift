@@ -48,6 +48,23 @@ class ViewController: UIViewController {
             isTraditional=false
         }
     }
+    @IBAction func checkLoginTypeLabel(sender:UITapGestureRecognizer)
+    {
+        if sender.view.tag == 11
+        {
+            //Traditional type
+            btnTouchID.setImage(UIImage(named: "RadioUnChecked.png") as UIImage, forState: UIControlState.Normal)
+            btnTraditional.setImage(UIImage(named: "RadioChecked.png") as UIImage, forState: UIControlState.Normal)
+            isTraditional=true
+        }
+        else
+        {
+            //Touch Id
+            btnTraditional.setImage(UIImage(named: "RadioUnChecked.png") as UIImage, forState: UIControlState.Normal)
+            btnTouchID.setImage(UIImage(named: "RadioChecked.png") as UIImage, forState: UIControlState.Normal)
+            isTraditional=false
+        }
+    }
     @IBAction func gotoRegisterPage()
     {
         if isTraditional

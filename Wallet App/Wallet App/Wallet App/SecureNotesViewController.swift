@@ -57,6 +57,7 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
     
     func alert(title:NSString, text:NSString)
     {
+        
         let alert = UIAlertView()
         alert.title = title
         alert.message = text

@@ -53,10 +53,9 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
     
     @IBAction func register()
     {
-        
         if txtFName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter First Name")
+            self.alert("Error", text: "Please enter First Name")
             hideKeyboard()
             self.txtFName.becomeFirstResponder()
             return
@@ -64,7 +63,7 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
         
         if txtLName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter Last Name")
+            self.alert("Error", text: "Please enter Last Name")
             hideKeyboard()
             self.txtLName.becomeFirstResponder()
             return
@@ -72,38 +71,30 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
         
         if txtEmail.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter Email")
+            self.alert("Error", text: "Please enter E-Mail ID")
             self.txtEmail.becomeFirstResponder()
             return
         }
         
         if txtPass.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter Password")
+            self.alert("Error", text: "Please enter Password")
             self.txtPass.becomeFirstResponder()
             return
         }
         
         if txtPass.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) < 6
         {
-            self.alert("Alert", text: "The password is too short: it must be at least 6 characters.")
+            self.alert("Error", text: "The password is too short: it must be at least 6 characters long.")
             self.txtPass.becomeFirstResponder()
             return
         }
         if txtConfPass.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
         {
-            self.alert("Alert", text: "Please enter confirm Password")
+            self.alert("Error", text: "Please enter Confirm Password")
             self.txtConfPass.becomeFirstResponder()
             return
         }
-        
-        if !api_Database.validEmail(txtEmail.text)
-        {
-            self.alert("Error", text: "Please enter valid eMail ID.")
-            self.txtEmail.becomeFirstResponder()
-            return
-        }
-        
         if txtPass.text != txtConfPass.text
         {
             self.alert("Error", text: "Both password does not Match. Please enter correct password.")
@@ -136,13 +127,13 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
         self.navigationController.pushViewController(homeOBj, animated: true)
     }
     
-    func alert(title:NSString, text:NSString)
+    func alert(title:NSString, text:NSString )
     {
         let alert = UIAlertView()
         alert.title = title
         alert.message = text
         alert.addButtonWithTitle("Ok")
-        alert.tag=101
+        //alert.tag=101
         alert.delegate=self
         alert.show()
     }
@@ -162,7 +153,6 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField!)
     {
-        
         if UIScreen.mainScreen().bounds.size.height == 568.0
         {
             if !isKeyUp
@@ -216,6 +206,21 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
             }
         }
         self.lastTextField=textField
+    }
+    func textFieldDidEndEditing(textField: UITextField!)
+    {
+        if textField.tag == 3
+        {
+            if !api_Database.validEmail(txtEmail.text)
+            {
+                var alert = UIAlertController(title: "Error", message: "Please enter valid E-Mail ID.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {action in
+                    println("confirm was tapped")
+                    self.txtEmail.becomeFirstResponder()
+                    }))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool

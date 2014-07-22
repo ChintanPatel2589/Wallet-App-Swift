@@ -21,7 +21,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     @IBOutlet var scrollView : UIScrollView
     @IBOutlet var txtBankName : UITextField
     @IBOutlet var txtOwnerName : UITextField
-    @IBOutlet var txtCategory : UITextField
+    //@IBOutlet var txtCategory : UITextField
     @IBOutlet var txtType : UITextField
     @IBOutlet var txtNumber : UITextField
     @IBOutlet var txtExpirationMonth :UITextField
@@ -42,18 +42,18 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
         if isCreditCard
         {
             self.title="Credit Card"
-            txtType.text="Credit Card"
+           // txtType.text="Credit Card"
         }
         else
         {
             self.title="Debit Card"
-            txtType.text="Debit Card"
+           // txtType.text="Debit Card"
         }
         self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
         self.scrollView.contentSize=CGSizeMake(320, 670)
-        txtType.enabled=false
+       // txtType.enabled=false
         
-        txtType.textColor=UIColor.grayColor()
+        //txtType.textColor=UIColor.grayColor()
         if isEdit
         {
             var rightDoneBtn = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Bordered, target: self, action: "Edit")
@@ -61,8 +61,8 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
             
             txtBankName.text=self.dataDic.valueForKey("BankName") as String
             txtOwnerName.text=self.dataDic.valueForKey("Name") as String
-            txtCategory.text=self.dataDic.valueForKey("Category") as String
-           // txtType.text=self.dataDic.valueForKey("Type") as String
+           // txtCategory.text=self.dataDic.valueForKey("Category") as String
+            txtType.text=self.dataDic.valueForKey("Type") as String
            
             txtNumber.text=self.dataDic.valueForKey("CardNumber") as String
             txtExpirationMonth.text=self.dataDic.valueForKey("ExpMonth") as String
@@ -90,6 +90,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
    
     func alert(title:NSString, text:NSString)
     {
+        
         let alert = UIAlertView()
         alert.title = title
         alert.message = text
@@ -107,7 +108,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     func Editdone() //Editing Done Update Data
     {
         if isCreditCard{
-            var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update creditCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
+            var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update creditCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,"Credit Card",txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
             
             if editResult
             {
@@ -124,7 +125,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
         }
         else
         {
-            var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update DebitCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
+            var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update DebitCard set BankName='%@',Name='%@',Category='%@',Type='%@',CardNumber='%@',ExpMonth='%@',ExpYear='%@',CCVCode='%@',Pin='%@',iBankingLogin='%@',loginPassword='%@',Phone='%@',Email='%@',Notes='%@' where UID='%@'",txtBankName.text,txtOwnerName.text,"Credit Card",txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
             
             if editResult
             {
@@ -146,15 +147,51 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     func done() //Save Data Insert New Data
     {
         println("done")
-       if txtExpirationMonth.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding).toIntMax() > 0
-       {
+        if txtBankName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Bank Name")
+            self.txtBankName.becomeFirstResponder()
+            return
+        }
+        if txtNumber.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Card Number")
+            self.txtNumber.becomeFirstResponder()
+            return
+        }
+        if txtExpirationMonth.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding).toIntMax() > 0
+        {
             if txtExpirationMonth.text.toInt()  > 12 || txtExpirationMonth.text.toInt() <= 0
             {
                 alert("Alert", text: "Please enter Month between 1 to 12.")
                 return
             }
-       }
+        }
+        else
+        {
+            self.alert("Error", text: "Please enter Expiration Month.")
+            self.txtExpirationMonth.becomeFirstResponder()
+            return
+        }
         
+        if txtExpirationYear.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Expiration Year.")
+            self.txtExpirationYear.becomeFirstResponder()
+            return
+        }
+        if txtCCV.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter CCV Code.")
+            self.txtCCV.becomeFirstResponder()
+            return
+        }
+        if txtPin.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Card Card PIN.")
+            self.txtPin.becomeFirstResponder()
+            return
+        }
         if txtContactEmail.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding).toIntMax() > 0
         {
             if !api_Database.validEmail(txtContactEmail.text)
@@ -168,7 +205,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
             api_Database.createTable("CREATE TABLE IF NOT EXISTS creditCard (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Type TEXT, CardNumber TEXT, ExpMonth TEXT, ExpYear TEXT, CCVCode TEXT, Pin TEXT, iBankingLogin TEXT, loginPassword TEXT, Phone TEXT, Email TEXT, Notes TEXT)", dbName: DATABASENAME)
             //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
             
-            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into creditCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text) as String)
+            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into creditCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,"Credit Card",txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text) as String)
             
             if result
             {
@@ -186,7 +223,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
             api_Database.createTable("CREATE TABLE IF NOT EXISTS DebitCard (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Type TEXT, CardNumber TEXT, ExpMonth TEXT, ExpYear TEXT, CCVCode TEXT, Pin TEXT, iBankingLogin TEXT, loginPassword TEXT, Phone TEXT, Email TEXT, Notes TEXT)", dbName: DATABASENAME)
             //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
             
-            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into DebitCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,txtCategory.text,txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
+            var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into DebitCard(UID,BankName,Name,Category,Type,CardNumber,ExpMonth,ExpYear,CCVCode,Pin,iBankingLogin,loginPassword,Phone,Email,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtBankName.text,txtOwnerName.text,"Credit Card",txtType.text,txtNumber.text,txtExpirationMonth.text,txtExpirationYear.text,txtCCV.text,txtPin.text,txtiBanking.text,txtPass.text,txtSupportPhone.text,txtContactEmail.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
             
             if result
             {
@@ -210,7 +247,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     {
         txtBankName.textColor=UIColor.grayColor()
         txtOwnerName.textColor=UIColor.grayColor()
-        txtCategory.textColor=UIColor.grayColor()
+       // txtCategory.textColor=UIColor.grayColor()
         txtType.textColor=UIColor.grayColor()
         txtNumber.textColor=UIColor.grayColor()
         txtExpirationMonth.textColor=UIColor.grayColor()
@@ -226,7 +263,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
         
         txtBankName.enabled=false
         txtOwnerName.enabled=false
-        txtCategory.enabled=false
+       // txtCategory.enabled=false
         txtType.enabled=false
         txtNumber.enabled=false
         txtExpirationMonth.enabled=false
@@ -244,8 +281,8 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
     {
         txtBankName.textColor=UIColor.blackColor()
         txtOwnerName.textColor=UIColor.blackColor()
-        txtCategory.textColor=UIColor.blackColor()
-       // txtType.textColor=UIColor.blackColor()
+        //txtCategory.textColor=UIColor.blackColor()
+        txtType.textColor=UIColor.blackColor()
         txtNumber.textColor=UIColor.blackColor()
         txtExpirationMonth.textColor=UIColor.blackColor()
         txtExpirationYear.textColor=UIColor.blackColor()
@@ -260,8 +297,8 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
         
         txtBankName.enabled=true
         txtOwnerName.enabled=true
-        txtCategory.enabled=true
-       // txtType.enabled=true
+        //txtCategory.enabled=true
+        txtType.enabled=true
         txtNumber.enabled=true
         txtExpirationMonth.enabled=true
         txtExpirationYear.enabled=true

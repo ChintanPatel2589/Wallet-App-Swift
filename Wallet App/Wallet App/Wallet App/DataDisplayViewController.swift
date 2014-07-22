@@ -145,8 +145,15 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
+        if arrayDataList.count > 0
+        {
+            return arrayDataList.count;
+        }
+        else
+        {
+            return 1;
+        }
         
-        return arrayDataList.count;
     }
     func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!)
     {
@@ -216,8 +223,12 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
             cell!.accessoryType=UITableViewCellAccessoryType.DisclosureIndicator
             cell!.selectionStyle=UITableViewCellSelectionStyle.None
         }
+        else
+        {
+            lblTitle.text = "No Data Found"
+        }
         
-        
+        cell!.selectionStyle=UITableViewCellSelectionStyle.None
         return cell;
     }
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
@@ -229,154 +240,164 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
     }
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
     {
-        if self.selectedItem as String == "Credit Card"
+        if self.arrayDataList.count > 0
         {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
-            AddDataOB.isEdit=true
-            AddDataOB.isCreditCard=true
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
+            if self.selectedItem as String == "Credit Card"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
+                AddDataOB.isEdit=true
+                AddDataOB.isCreditCard=true
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
+            else if self.selectedItem as String == "Bank Account"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("BankAccount") as BankAccountViewController
+                AddDataOB.isEdit=true
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
+            else if self.selectedItem as String == "Web Login"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("WebLogin") as WebLoginViewController
+                AddDataOB.isEdit=true
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
+            else if self.selectedItem as String == "ID or Passport"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("Passport") as PassportViewController
+                AddDataOB.isEdit=true
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
+            else if self.selectedItem as String == "Software License"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("SoftwareLicense") as SoftwareLicenseViewController
+                AddDataOB.isEdit=true
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
+            else if self.selectedItem as String == "Secure Notes"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("SecureNotes") as SecureNotesViewController
+                AddDataOB.isEdit=true
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
+            else if self.selectedItem as String == "Debit Card"
+            {
+                var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
+                AddDataOB.isEdit=true
+                AddDataOB.isCreditCard=false
+                AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                self.navigationController.pushViewController(AddDataOB, animated: true)
+            }
         }
-        else if self.selectedItem as String == "Bank Account"
-        {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("BankAccount") as BankAccountViewController
-            AddDataOB.isEdit=true
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
-        }
-        else if self.selectedItem as String == "Web Login"
-        {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("WebLogin") as WebLoginViewController
-            AddDataOB.isEdit=true
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
-        }
-        else if self.selectedItem as String == "ID or Passport"
-        {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("Passport") as PassportViewController
-            AddDataOB.isEdit=true
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
-        }
-        else if self.selectedItem as String == "Software License"
-        {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("SoftwareLicense") as SoftwareLicenseViewController
-            AddDataOB.isEdit=true
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
-        }
-        else if self.selectedItem as String == "Secure Notes"
-        {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("SecureNotes") as SecureNotesViewController
-            AddDataOB.isEdit=true
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
-        }
-        else if self.selectedItem as String == "Debit Card"
-        {
-            var AddDataOB=self.storyboard.instantiateViewControllerWithIdentifier("CreditCard") as CreditCardViewController
-            AddDataOB.isEdit=true
-            AddDataOB.isCreditCard=false
-            AddDataOB.dataDic=self.arrayDataList.objectAtIndex(indexPath.row) as NSMutableDictionary
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            self.navigationController.pushViewController(AddDataOB, animated: true)
-        }
-        
     }
     func alert(title:NSString, text:NSString)
     {
-        var alert = UIAlertView()
-        alert.title = title
-        alert.message = text
-        alert.addButtonWithTitle("No")
-        alert.addButtonWithTitle("Yes")
-        alert.tag=101
-        alert.delegate=self
-        alert.show()
+        var alert = UIAlertController(title: title, message: text, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {action in
+            println("confirm was tapped")
+            
+            if self.selectedItem as String == "Credit Card"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from creditCard where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            else if self.selectedItem as String == "Bank Account"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from bankAccount where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            else if self.selectedItem as String == "Web Login"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from webLogin where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            else if self.selectedItem as String == "ID or Passport"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from IDPassport where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            else if self.selectedItem as String == "Software License"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from SoftwareLicense where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            else if self.selectedItem as String == "Secure Notes"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from SecureNotes where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            else if self.selectedItem as String == "Debit Card"
+            {
+                var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from DebitCard where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
+                if result
+                {
+                    self.arrayDataList.removeAllObjects()
+                    self.reloadTableData()
+                }
+            }
+            
+            }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+//        var alert = UIAlertView()
+//        alert.title = title
+//        alert.message = text
+//        alert.addButtonWithTitle("No")
+//        alert.addButtonWithTitle("Yes")
+//        alert.tag=101
+//        alert.delegate=self
+//        alert.show()
     }
     func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
     {
         if alertView.tag==101
         {
             if buttonIndex==1
-            {
-                if self.selectedItem as String == "Credit Card"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from creditCard where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-                else if self.selectedItem as String == "Bank Account"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from bankAccount where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-                else if self.selectedItem as String == "Web Login"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from webLogin where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-                else if self.selectedItem as String == "ID or Passport"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from IDPassport where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-                else if self.selectedItem as String == "Software License"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from SoftwareLicense where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-                else if self.selectedItem as String == "Secure Notes"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from SecureNotes where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-                else if self.selectedItem as String == "Debit Card"
-                {
-                    var result = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"delete from DebitCard where UID='%@'",(self.arrayDataList.objectAtIndex(self.selectedIndex).valueForKey("UID") as String))) as Bool
-                    if result
-                    {
-                        self.arrayDataList.removeAllObjects()
-                        reloadTableData()
-                    }
-                }
-            }
+            {}
         }
     }
     /*
