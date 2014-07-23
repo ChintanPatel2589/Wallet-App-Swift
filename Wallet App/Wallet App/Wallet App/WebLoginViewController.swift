@@ -18,8 +18,8 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
     
     @IBOutlet var txtAccountName : UITextField
     @IBOutlet var txtOwnerName : UITextField
-    @IBOutlet var txtCategory : UITextField
-    @IBOutlet var txtCurrency : UITextField
+   // @IBOutlet var txtCategory : UITextField
+   // @IBOutlet var txtCurrency : UITextField
     @IBOutlet var txtLogin : UITextField
     @IBOutlet var txtPassword :UITextField
     @IBOutlet var txtWebsite :UITextField
@@ -29,7 +29,7 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
             super.viewDidLoad()
             self.title="Web Login"
         self.navigationController.navigationBar.translucent=false
-            self.scrollView.contentSize=CGSizeMake(320, 450)
+            self.scrollView.contentSize=CGSizeMake(320, 420)
         self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationController.navigationBar.titleTextAttributes = titleDict
@@ -41,8 +41,8 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
 
                 txtAccountName.text=self.dataDic.valueForKey("AccountName") as String
                 txtOwnerName.text=self.dataDic.valueForKey("Name") as String
-                txtCategory.text=self.dataDic.valueForKey("Category") as String
-                txtCurrency.text=self.dataDic.valueForKey("Currency") as String
+               // txtCategory.text=self.dataDic.valueForKey("Category") as String
+                //txtCurrency.text=self.dataDic.valueForKey("Currency") as String
                 txtLogin.text=self.dataDic.valueForKey("Login") as String
                 txtPassword.text=self.dataDic.valueForKey("Password") as String
                 txtWebsite.text=self.dataDic.valueForKey("Website") as String
@@ -79,7 +79,7 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
     }
     func Editdone() //Editing Done Update Data
     {
-        var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update webLogin set AccountName='%@',Name='%@',Category='%@',Currency='%@',Login='%@',Password='%@',Website='%@',Notes='%@' where UID='%@'",txtAccountName.text,txtOwnerName.text,txtCategory.text,txtCurrency.text,txtLogin.text,txtPassword.text,txtWebsite.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
+        var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update webLogin set AccountName='%@',Name='%@',Login='%@',Password='%@',Website='%@',Notes='%@' where UID='%@'",txtAccountName.text,txtOwnerName.text,txtLogin.text,txtPassword.text,txtWebsite.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
         if editResult
         {
             self.lastTextField.resignFirstResponder()
@@ -98,10 +98,30 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
     {
         println("done")
     
-        api_Database.createTable("CREATE TABLE IF NOT EXISTS webLogin (UID TEXT,AccountName TEXT, Name TEXT, Category TEXT, Currency TEXT, Login TEXT, Password TEXT, Website TEXT, Notes TEXT)", dbName: DATABASENAME)
+        if txtAccountName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Account Name")
+            self.txtAccountName.becomeFirstResponder()
+            return
+        }
+        if txtLogin.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Login ID")
+            self.txtLogin.becomeFirstResponder()
+            return
+        }
+        
+        if txtPassword.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Password")
+            self.txtPassword.becomeFirstResponder()
+            return
+        }
+        
+        api_Database.createTable("CREATE TABLE IF NOT EXISTS webLogin (UID TEXT,AccountName TEXT, Name TEXT, Login TEXT, Password TEXT, Website TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         
-        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into webLogin(UID,AccountName,Name,Category,Currency,Login,Password,Website,Notes) values('%@','%@','%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtAccountName.text,txtOwnerName.text,txtCategory.text,txtCurrency.text,txtLogin.text,txtPassword.text,txtWebsite.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
+        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into webLogin(UID,AccountName,Name,Login,Password,Website,Notes) values('%@','%@','%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtAccountName.text,txtOwnerName.text,txtLogin.text,txtPassword.text,txtWebsite.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
     
             if result
             {
@@ -123,8 +143,6 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
     {
             txtAccountName.textColor=UIColor.grayColor()
             txtOwnerName.textColor=UIColor.grayColor()
-            txtCategory.textColor=UIColor.grayColor()
-            txtCurrency.textColor=UIColor.grayColor()
             txtLogin.textColor=UIColor.grayColor()
             txtPassword.textColor=UIColor.grayColor()
             txtWebsite.textColor=UIColor.grayColor()
@@ -134,8 +152,6 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
 
             txtAccountName.enabled=false
             txtOwnerName.enabled=false
-            txtCategory.enabled=false
-            txtCurrency.enabled=false
             txtLogin.enabled=false
             txtPassword.enabled=false
             txtWebsite.enabled=false
@@ -147,8 +163,6 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
     {
             txtAccountName.textColor=UIColor.blackColor()
             txtOwnerName.textColor=UIColor.blackColor()
-            txtCategory.textColor=UIColor.blackColor()
-            txtCurrency.textColor=UIColor.blackColor()
             txtLogin.textColor=UIColor.blackColor()
             txtPassword.textColor=UIColor.blackColor()
             txtWebsite.textColor=UIColor.blackColor()
@@ -159,8 +173,6 @@ class WebLoginViewController: UIViewController ,UITabBarDelegate,UITextFieldDele
             
             txtAccountName.enabled=true
             txtOwnerName.enabled=true
-            txtCategory.enabled=true
-            txtCurrency.enabled=true
             txtLogin.enabled=true
             txtPassword.enabled=true
             txtWebsite.enabled=true

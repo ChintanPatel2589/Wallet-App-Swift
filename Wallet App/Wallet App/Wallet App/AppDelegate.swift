@@ -45,14 +45,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        
         NSNotificationCenter.defaultCenter().postNotificationName("ResetKeyboard", object: nil)
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        if NSUserDefaults.standardUserDefaults().valueForKey("Login") as String != "NotRegister"
+        {
+            //println("regster")
+            let homeOBJ = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("login") as LoginViewController
+            //[[self.navigationController viewControllers] lastObject];
+           // var newTmpNav = UINavigationController(rootViewController: homeOBJ)
+
+            if self.nav?.presentedViewController
+            {
+                self.nav?.presentedViewController.dismissViewControllerAnimated(false, completion: {
+                    println("dismiss")
+                    self.nav?.presentViewController(newTmpNav, animated: false, completion: nil)
+                    })
+            }
+            else
+            {
+                self.nav?.presentViewController(newTmpNav, animated: false, completion: nil)
+            }
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

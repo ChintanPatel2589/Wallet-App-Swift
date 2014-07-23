@@ -51,6 +51,7 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
             homeOBj.navigationItem.hidesBackButton=true
             self.navigationController.pushViewController(homeOBj, animated: true)
             self.lblErrorMsg.hidden=true
+            NSUserDefaults.standardUserDefaults().setValue("Login", forKey: "Login")
         }
         else
         {
@@ -112,7 +113,7 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
             self.presentViewController(myMail, animated: true, completion: nil)
         }
         else{
-            alert("Alert", text: "Your device cannot send emails")
+            alert("Error", text: "Your device cannot send emails")
 //            var alert = UIAlertController(title: "Alert", message: "Your device cannot send emails", preferredStyle: UIAlertControllerStyle.Alert)
 //            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
 //            self.presentViewController(alert, animated: true, completion: nil)

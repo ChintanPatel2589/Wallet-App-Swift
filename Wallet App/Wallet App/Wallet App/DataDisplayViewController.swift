@@ -178,7 +178,7 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
             lblTitle.font=UIFont(name: "HelveticaNeue-Bold", size: 17)
             cell!.addSubview(lblTitle)
             
-            lblDesc=UILabel(frame: CGRectMake(10, 20, 200, 21))
+            lblDesc=UILabel(frame: CGRectMake(10, 20, 280, 21))
             lblDesc.backgroundColor=UIColor.clearColor()
             lblDesc.tag=2
             lblDesc.textColor=UIColor.lightGrayColor()
@@ -213,7 +213,7 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
             else if self.selectedItem as String == "Secure Notes"
             {
                 lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String
-                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("OwnerName") as String
+                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Notes") as String
             }
             else
             {
@@ -227,7 +227,6 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         {
             lblTitle.text = "No Data Found"
         }
-        
         cell!.selectionStyle=UITableViewCellSelectionStyle.None
         return cell;
     }

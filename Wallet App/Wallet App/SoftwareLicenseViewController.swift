@@ -108,6 +108,19 @@ class SoftwareLicenseViewController: UIViewController,UITabBarDelegate,UITextFie
     {
         println("done")
         
+        if txtSoftwareName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Software Name")
+            self.txtSoftwareName.becomeFirstResponder()
+            return
+        }
+        if txtLicenseKey.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter License Key")
+            self.txtLicenseKey.becomeFirstResponder()
+            return
+        }
+        
         api_Database.createTable("CREATE TABLE IF NOT EXISTS SoftwareLicense (UID TEXT,SoftwareName TEXT, OwnerName TEXT, CompanyNmae TEXT, PurchaseDate TEXT, Email TEXT, LicenseKey TEXT, Website TEXT,SupportEmail TEXT,Phone TEXT,Price TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         

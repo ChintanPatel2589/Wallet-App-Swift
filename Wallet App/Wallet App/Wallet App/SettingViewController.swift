@@ -12,11 +12,15 @@ class SettingViewController: UIViewController,UITabBarDelegate,UITableViewDataSo
 
     @IBOutlet var tabBar : UITabBar
     @IBOutlet var tblView : UITableView
+    @IBOutlet var processView : UIView
+    @IBOutlet var process : UIActivityIndicatorView
     var app_obj = UIApplication.sharedApplication().delegate as AppDelegate
      let kCellIdentifier: String = "Cell"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title="Setting"
+         self.processView.layer.cornerRadius=10;
+        self.processView.backgroundColor=UIColor(patternImage: UIImage(named: "BlurBack.jpg"))
        // self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         self.tblView.tableFooterView = UIView(frame: CGRectZero)
         // Do any additional setup after loading the view.
@@ -30,6 +34,9 @@ class SettingViewController: UIViewController,UITabBarDelegate,UITableViewDataSo
         tabBar.setItems(ArryTabItems, animated: false)
         
         tabBar.selectedItem=ArryTabItems.objectAtIndex(1) as UITabBarItem
+        
+        self.processView.hidden=true
+        self.process.stopAnimating()
     }
     func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!)
     {
@@ -101,11 +108,17 @@ class SettingViewController: UIViewController,UITabBarDelegate,UITableViewDataSo
     {
         if indexPath.section == 0
         {
+            self.processView.hidden=false
+            self.process.startAnimating()
+           
             if indexPath.row == 0
             {
                 var AddData = self.storyboard.instantiateViewControllerWithIdentifier("ChangePassword") as ChangePasswordViewController
                 var newTmpNav = UINavigationController(rootViewController: AddData)
-                self.navigationController.presentViewController(newTmpNav, animated: true, completion: nil)
+                self.navigationController.presentViewController(newTmpNav, animated: true, completion: {
+                        self.processView.hidden=true
+                        self.process.stopAnimating()
+                    })
             }
             else
             {

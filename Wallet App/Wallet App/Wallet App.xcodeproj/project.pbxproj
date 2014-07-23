@@ -37,8 +37,8 @@
 		593EFF721974F4DD00816DBE /* SecureNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593EFF711974F4DD00816DBE /* SecureNotesViewController.swift */; };
 		599AADAF19752E5100B0E28C /* Secure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 599AADAE19752E5100B0E28C /* Secure.jpg */; };
 		599AADB119752F6100B0E28C /* LockHomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 599AADB019752F6100B0E28C /* LockHomeIcon.png */; };
+		59A26DE6197FCDEA006F7DDE /* BlurBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59A26DE5197FCDEA006F7DDE /* BlurBack.jpg */; };
 		59AC7DD819779F2200457944 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 59AC7DD719779F2200457944 /* Setting.png */; };
-		59AC7DDA1977A20300457944 /* BlurBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59AC7DD91977A20300457944 /* BlurBack.jpg */; };
 		59AC7DDC1977A84B00457944 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */; };
 		59AC7DDE1977D9B400457944 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */; };
 /* End PBXBuildFile section */
@@ -90,8 +90,8 @@
 		593EFF711974F4DD00816DBE /* SecureNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureNotesViewController.swift; sourceTree = "<group>"; };
 		599AADAE19752E5100B0E28C /* Secure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Secure.jpg; sourceTree = "<group>"; };
 		599AADB019752F6100B0E28C /* LockHomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LockHomeIcon.png; sourceTree = "<group>"; };
+		59A26DE5197FCDEA006F7DDE /* BlurBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BlurBack.jpg; sourceTree = "<group>"; };
 		59AC7DD719779F2200457944 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
-		59AC7DD91977A20300457944 /* BlurBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BlurBack.jpg; sourceTree = "<group>"; };
 		59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +192,7 @@
 		14A9B268195A96A200E501D0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				59AC7DD91977A20300457944 /* BlurBack.jpg */,
+				59A26DE5197FCDEA006F7DDE /* BlurBack.jpg */,
 				59AC7DD719779F2200457944 /* Setting.png */,
 				599AADB019752F6100B0E28C /* LockHomeIcon.png */,
 				599AADAE19752E5100B0E28C /* Secure.jpg */,
@@ -317,7 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				141F9017195C17790021AD16 /* TabHome@2x.png in Resources */,
-				59AC7DDA1977A20300457944 /* BlurBack.jpg in Resources */,
+				59A26DE6197FCDEA006F7DDE /* BlurBack.jpg in Resources */,
 				1470AB98195BF637000FC0B0 /* MavenPro in Resources */,
 				14A9B251195A94C100E501D0 /* Main.storyboard in Resources */,
 				14A9B253195A94C100E501D0 /* Images.xcassets in Resources */,

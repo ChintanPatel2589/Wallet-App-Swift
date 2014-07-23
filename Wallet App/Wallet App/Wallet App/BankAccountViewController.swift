@@ -126,7 +126,26 @@ func Editdone() //Editing Done Update Data
 func done() //Save Data Insert New Data
 {
     println("done")
- 
+    if txtBankName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+    {
+        self.alert("Error", text: "Please enter Bank Name")
+        self.txtBankName.becomeFirstResponder()
+        return
+    }
+    if txtNumber.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+    {
+        self.alert("Error", text: "Please enter Account Number")
+        self.txtNumber.becomeFirstResponder()
+        return
+    }
+   
+    if txtCategory.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+    {
+        self.alert("Error", text: "Please select Category eg.Saving.")
+        self.txtCategory.becomeFirstResponder()
+        return
+    }
+   
     api_Database.createTable("CREATE TABLE IF NOT EXISTS bankAccount (UID TEXT,BankName TEXT, Name TEXT, Category TEXT, Currency TEXT, AccountNumber TEXT, BankCode TEXT, Swift TEXT, IBAN TEXT, PIN TEXT, Website TEXT, Phone TEXT,Address1 TEXT,Address2 TEXT,BranchName TEXT,UserID TEXT, Notes TEXT)", dbName: DATABASENAME)
     //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
     
@@ -244,6 +263,7 @@ func textFieldDidBeginEditing(textField: UITextField!)
             completion: {
                 (finished: Bool) in
                 textField.resignFirstResponder()
+                self.txtCategory.text="Saving"
                 println("finished")
             });
     }

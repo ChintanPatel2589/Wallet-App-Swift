@@ -122,6 +122,8 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
         pass = nil
         email = nil
         
+        NSUserDefaults.standardUserDefaults().setValue("Register", forKey: "Login")
+        
         var homeOBj=self.storyboard.instantiateViewControllerWithIdentifier("Home") as HomeMenuViewController
         homeOBj.navigationItem.hidesBackButton=true
         self.navigationController.pushViewController(homeOBj, animated: true)

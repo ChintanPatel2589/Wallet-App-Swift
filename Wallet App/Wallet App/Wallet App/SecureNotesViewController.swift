@@ -18,10 +18,6 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
     @IBOutlet var scrollView : UIScrollView
     
     @IBOutlet var txtName : UITextField
-    @IBOutlet var txtOwnerName : UITextField
-    
-    @IBOutlet var txtKind : UITextField
-   
     @IBOutlet var txtViewNote : UITextView
     
     override func viewDidLoad() {
@@ -31,15 +27,13 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
         self.navigationController.navigationBar.barTintColor=UIColor(red: 252.0/255, green: 173.0/255, blue: 83.0/255, alpha: 1)
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationController.navigationBar.titleTextAttributes = titleDict
-        self.scrollView.contentSize=CGSizeMake(320, 800)
+        self.scrollView.contentSize=CGSizeMake(320, self.view.frame.height)
         if isEdit
         {
             var rightDoneBtn = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Bordered, target: self, action: "Edit")
             self.navigationItem.rightBarButtonItem=rightDoneBtn
             
             txtName.text=self.dataDic.valueForKey("Name") as String
-            txtOwnerName.text=self.dataDic.valueForKey("OwnerName") as String
-            txtKind.text=self.dataDic.valueForKey("Kind") as String
             txtViewNote.text=self.dataDic.valueForKey("Notes") as String
             
             setTextFieldGrayColor() //Function call for set textfield editabel false and color
@@ -74,7 +68,7 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
     }
     func Editdone() //Editing Done Update Data
     {
-        var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update SecureNotes set Name='%@',OwnerName='%@',Kind='%@',Notes='%@' where UID='%@'",txtName.text,txtOwnerName.text,txtKind.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
+        var editResult = api_Database.genericQueryforDatabase(DATABASENAME, query: NSString(format:"update SecureNotes set Name='%@',Notes='%@' where UID='%@'",txtName.text,txtViewNote.text,self.dataDic.valueForKey("UID") as String))
         if editResult
         {
             self.lastTextField.resignFirstResponder()
@@ -93,10 +87,10 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
     {
         println("done")
         
-        api_Database.createTable("CREATE TABLE IF NOT EXISTS SecureNotes (UID TEXT,Name TEXT, OwnerName TEXT, Kind TEXT, Notes TEXT)", dbName: DATABASENAME)
+        api_Database.createTable("CREATE TABLE IF NOT EXISTS SecureNotes (UID TEXT,Name TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
         
-        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into SecureNotes(UID,Name,OwnerName,Kind,Notes) values('%@','%@','%@','%@','%@')",NSUUID.UUID().UUIDString,txtName.text,txtOwnerName.text,txtKind.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
+        var result=api_Database.genericQueryforDatabase(DATABASENAME, query:NSString(format:"insert into SecureNotes(UID,Name,Notes) values('%@','%@','%@')",NSUUID.UUID().UUIDString,txtName.text,txtViewNote.text.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)) as String)
         
         if result
         {
@@ -117,14 +111,10 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
     func setTextFieldGrayColor()
     {
         txtName.textColor=UIColor.grayColor()
-        txtOwnerName.textColor=UIColor.grayColor()
-        txtKind.textColor=UIColor.grayColor()
         txtViewNote.textColor=UIColor.grayColor()
-        
-        
+
         txtName.enabled=false
-        txtOwnerName.enabled=false
-        txtKind.enabled=false
+        
      
         
         txtViewNote.editable=false
@@ -133,14 +123,12 @@ class SecureNotesViewController: UIViewController ,UITabBarDelegate,UITextFieldD
     func setTextfieldBlackColor()
     {
         txtName.textColor=UIColor.blackColor()
-        txtOwnerName.textColor=UIColor.blackColor()
-        txtKind.textColor=UIColor.blackColor()
+        
         txtViewNote.textColor=UIColor.blackColor()
         
         
         txtName.enabled=true
-        txtOwnerName.enabled=true
-        txtKind.enabled=true
+        
         
         
         txtViewNote.editable=true

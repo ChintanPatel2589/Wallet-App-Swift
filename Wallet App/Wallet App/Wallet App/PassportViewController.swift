@@ -13,7 +13,15 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
     var dataDic = NSMutableDictionary()
     var isEdit = false
     var lastTextField = UITextField()
+    
+    //Picker View
+    var ArrayPickerItem : NSMutableArray = ["ID","Passport"]
+    var isPickerViewUp = false
+    @IBOutlet var pickerView : UIPickerView
+    @IBOutlet var viewPicker : UIView
+    //==========
     //Date Select View
+    var isDatePickerViewUp = false
     @IBOutlet var viewDatePicker : UIView
     @IBOutlet var datePicker : UIDatePicker
     @IBOutlet var btnSelectDate : UIButton
@@ -107,6 +115,12 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
             self.navigationItem.leftBarButtonItem=leftDoneBtn
         }
     }
+    override func viewWillAppear(animated: Bool)
+    {
+        var rViewDatepicker = self.viewPicker.frame as CGRect
+        rViewDatepicker.origin.y = self.view.frame.size.height + 1
+        self.viewPicker.frame=rViewDatepicker
+    }
     
     @IBAction func btnGenderClicked(sender:UIButton)
     {
@@ -163,6 +177,63 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
     func done() //Save Data Insert New Data
     {
         println("done")
+        
+        if txtName.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Name")
+            self.txtName.becomeFirstResponder()
+            return
+        }
+        if txtCategory.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please select Category eg.Passport,ID")
+            self.txtCategory.becomeFirstResponder()
+            return
+        }
+        
+        if txtExpirationMonth.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding).toIntMax() > 0
+        {
+            if txtExpirationMonth.text.toInt()  > 12 || txtExpirationMonth.text.toInt() <= 0
+            {
+                alert("Error", text: "Please enter Month between 1 to 12.")
+                return
+            }
+        }
+        else
+        {
+            self.alert("Error", text: "Please enter Expiration Month.")
+            self.txtExpirationMonth.becomeFirstResponder()
+            return
+        }
+        
+        if txtExpirationYear.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Expiration Year.")
+            self.txtExpirationYear.becomeFirstResponder()
+            return
+        }
+        if txtNumber.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter ID Number")
+            self.txtNumber.becomeFirstResponder()
+            return
+        }
+        if txtCountry.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please enter Country")
+            self.txtCountry.becomeFirstResponder()
+            return
+        }
+        if self.gender.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0
+        {
+            self.alert("Error", text: "Please select your Gender.")
+            return
+        }
+        if self.btnSelectDate.titleLabel.text == "Select DOB"
+        {
+                alert("Error", text: "Please Select DOB.")
+                return
+        }
         
         api_Database.createTable("CREATE TABLE IF NOT EXISTS IDPassport (UID TEXT,Name TEXT, Country TEXT, Category TEXT, ExpMonth TEXT, ExpYear TEXT, IDNumber TEXT, State TEXT,Address1 TEXT,Address2 TEXT,City TEXT,ZIP TEXT,Gender TEXT,DOB TEXT,Occupation TEXT,Company TEXT,Other  TEXT, Notes TEXT)", dbName: DATABASENAME)
         //api_Database.createTable("CREATE TABLE IF NOT EXISTS test (Name TEXT, City TEXT)", dbName: DATABASENAME)
@@ -281,39 +352,46 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
     func textFieldDidBeginEditing(textField: UITextField!)
     {
         self.lastTextField = textField
+        if textField.tag == 3
+        {
+            self.isPickerViewUp = true
+            self.view.bringSubviewToFront(self.viewPicker)
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
+                {
+                    var rViewDatepicker = self.viewPicker.frame as CGRect
+                    rViewDatepicker.origin.y = self.view.frame.size.height - 206
+                    self.viewPicker.frame=rViewDatepicker
+                },
+                completion: {
+                    (finished: Bool) in
+                    textField.resignFirstResponder()
+                    self.txtCategory.text="ID"
+                    println("finished")
+                });
+        }
+        else
+        {
+            if self.isPickerViewUp
+            {
+                UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
+                    {
+                        var rViewDatepicker = self.viewPicker.frame as CGRect
+                        rViewDatepicker.origin.y = self.view.frame.size.height + 1
+                        self.viewPicker.frame=rViewDatepicker
+                        self.isPickerViewUp = false
+                    },
+                    completion: {
+                        (finished: Bool) in
+                        println("finished")
+                    });
+            }
+        }
+        if self.isDatePickerViewUp
+        {
+            self.tooBarCancel()
+        }
         scrollView.setContentOffset(CGPointMake(0, textField.center.y-20), animated: true)
-//        if isEdit
-//        {
-//            if textField.tag == 1
-//            {
-//                return
-//            }
-//            
-//            if  textField.tag == 2 || textField.tag == 3 || textField.tag == 4
-//            {
-//                scrollView.setContentOffset(CGPointMake(0, textField.center.y-20), animated: true)
-//            }
-//            else
-//            {
-//                scrollView.setContentOffset(CGPointMake(0, textField.center.y-60), animated: true)
-//            }
-//        }
-//        else
-//        {
-//            if textField.tag == 1
-//            {
-//                return
-//            }
-//            scrollView.setContentOffset(CGPointMake(0, textField.center.y-20), animated: true)
-////            if  textField.tag == 2 || textField.tag == 3 || textField.tag == 4
-////            {
-////                scrollView.setContentOffset(CGPointMake(0, textField.center.y-20), animated: true)
-////            }
-////            else
-////            {
-////                scrollView.setContentOffset(CGPointMake(0, textField.center.y-87), animated: true)
-////            }
-//        }
+
     }
     
     func textFieldShouldReturn(textField: UITextField!) -> Bool
@@ -345,20 +423,23 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
     /// Date Picker View Method
     @IBAction func btnSelectDOB()
     {
-        scrollView.setContentOffset(CGPointMake(0, btnSelectDate.center.y-87), animated: true)
-        self.view.bringSubviewToFront(self.viewDatePicker)
-        self.lastTextField.resignFirstResponder()
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
-            {
-                var rViewDatepicker = self.viewDatePicker.frame as CGRect
-                rViewDatepicker.origin.y = self.view.frame.size.height - 206
-                self.viewDatePicker.frame=rViewDatepicker
-            },
-            completion: {
-                (finished: Bool) in
-               
-                println("finished")
-            });
+        if !self.isDatePickerViewUp
+        {
+            scrollView.setContentOffset(CGPointMake(0, btnSelectDate.center.y-87), animated: true)
+            self.view.bringSubviewToFront(self.viewDatePicker)
+            self.lastTextField.resignFirstResponder()
+            UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
+                {
+                    var rViewDatepicker = self.viewDatePicker.frame as CGRect
+                    rViewDatepicker.origin.y = self.view.frame.size.height - 206
+                    self.viewDatePicker.frame=rViewDatepicker
+                },
+                completion: {
+                    (finished: Bool) in
+                    self.isDatePickerViewUp = true
+                    println("finished")
+                });
+        }
     }
     @IBAction func tooBarCancel()
     {
@@ -370,7 +451,7 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
             },
             completion: {
                 (finished: Bool) in
-                
+                self.isDatePickerViewUp = false
                 println("finished")
             });
     }
@@ -387,10 +468,80 @@ class PassportViewController: UIViewController,UITabBarDelegate,UITextFieldDeleg
             },
             completion: {
                 (finished: Bool) in
-                
+                self.isDatePickerViewUp = false
                 println("finished")
             });
     }
+    
+    //==============================
+    //PICKER VIEW
+    //Picker View Method
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int
+    {
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int
+    {
+        return self.ArrayPickerItem.count
+    }
+    
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String!{
+        return self.ArrayPickerItem.objectAtIndex(row) as String
+    }
+    
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    {
+        self.txtCategory.text = self.ArrayPickerItem.objectAtIndex(row) as String
+    }
+    
+//    @IBAction func btnSelectDOB()
+//    {
+//        scrollView.setContentOffset(CGPointMake(0, txtCategory.center.y-87), animated: true)
+//        self.view.bringSubviewToFront(self.viewPicker)
+//        self.lastTextField.resignFirstResponder()
+//        UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
+//            {
+//                var rViewDatepicker = self.viewPicker.frame as CGRect
+//                rViewDatepicker.origin.y = self.view.frame.size.height - 206
+//                self.viewPicker.frame=rViewDatepicker
+//            },
+//            completion: {
+//                (finished: Bool) in
+//                println("finished")
+//            });
+//    }
+    @IBAction func tooBarPickerViewCancel()
+    {
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
+            {
+                var rViewDatepicker = self.viewPicker.frame as CGRect
+                rViewDatepicker.origin.y = self.view.frame.size.height + 1
+                self.viewPicker.frame=rViewDatepicker
+            },
+            completion: {
+                (finished: Bool) in
+                self.txtCategory.text = ""
+                println("finished")
+            });
+    }
+    @IBAction func toolBarPickerViewDone()
+    {
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations:
+            {
+                var rViewDatepicker = self.viewPicker.frame as CGRect
+                rViewDatepicker.origin.y = self.view.frame.size.height + 1
+                self.viewPicker.frame=rViewDatepicker
+            },
+            completion: {
+                (finished: Bool) in
+                println("finished")
+            });
+    }
+    
+    //========================
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

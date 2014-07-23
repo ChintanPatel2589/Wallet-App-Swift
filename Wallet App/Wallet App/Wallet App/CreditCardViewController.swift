@@ -140,8 +140,6 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
                 alert("Error", text: "ooppsss..Something getting Wrong. Please try Again with valid Data.")
             }
         }
-        
-        
     }
     
     func done() //Save Data Insert New Data
@@ -163,7 +161,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
         {
             if txtExpirationMonth.text.toInt()  > 12 || txtExpirationMonth.text.toInt() <= 0
             {
-                alert("Alert", text: "Please enter Month between 1 to 12.")
+                alert("Error", text: "Please enter Month between 1 to 12.")
                 return
             }
         }
@@ -196,7 +194,7 @@ class CreditCardViewController: UIViewController ,UITabBarDelegate,UITextFieldDe
         {
             if !api_Database.validEmail(txtContactEmail.text)
             {
-                alert("Alert", text: "enter valid E-Mail")
+                alert("Error", text: "enter valid E-Mail")
                 return
             }
         }
