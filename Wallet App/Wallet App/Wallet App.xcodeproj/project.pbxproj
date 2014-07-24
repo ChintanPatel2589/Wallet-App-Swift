@@ -41,6 +41,8 @@
 		59AC7DD819779F2200457944 /* Setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 59AC7DD719779F2200457944 /* Setting.png */; };
 		59AC7DDC1977A84B00457944 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */; };
 		59AC7DDE1977D9B400457944 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */; };
+		59ACAC151980E0D7005A9642 /* NSString+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ACAC121980E0D7005A9642 /* NSString+AESCrypt.m */; };
+		59ACAC161980E0D7005A9642 /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 59ACAC141980E0D7005A9642 /* NSData+AESCrypt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,10 @@
 		59AC7DD719779F2200457944 /* Setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setting.png; sourceTree = "<group>"; };
 		59AC7DDB1977A84B00457944 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		59ACAC111980E0D7005A9642 /* NSString+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AESCrypt.h"; sourceTree = "<group>"; };
+		59ACAC121980E0D7005A9642 /* NSString+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AESCrypt.m"; sourceTree = "<group>"; };
+		59ACAC131980E0D7005A9642 /* NSData+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESCrypt.h"; sourceTree = "<group>"; };
+		59ACAC141980E0D7005A9642 /* NSData+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESCrypt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,7 @@
 		14A9B248195A94C000E501D0 /* Wallet App */ = {
 			isa = PBXGroup;
 			children = (
+				59ACAC101980DFFA005A9642 /* Data Encryption */,
 				1470AB97195BF637000FC0B0 /* MavenPro */,
 				141F5CAA195AE6EF007612C0 /* Database */,
 				14A9B268195A96A200E501D0 /* Images */,
@@ -233,6 +240,17 @@
 				59AC7DDD1977D9B400457944 /* AboutAppViewController.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		59ACAC101980DFFA005A9642 /* Data Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				59ACAC111980E0D7005A9642 /* NSString+AESCrypt.h */,
+				59ACAC121980E0D7005A9642 /* NSString+AESCrypt.m */,
+				59ACAC131980E0D7005A9642 /* NSData+AESCrypt.h */,
+				59ACAC141980E0D7005A9642 /* NSData+AESCrypt.m */,
+			);
+			name = "Data Encryption";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,8 +366,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				141F901B195C26A90021AD16 /* SettingViewController.swift in Sources */,
+				59ACAC161980E0D7005A9642 /* NSData+AESCrypt.m in Sources */,
 				141F5CB0195AE705007612C0 /* api_Database.m in Sources */,
 				59AC7DDE1977D9B400457944 /* AboutAppViewController.swift in Sources */,
+				59ACAC151980E0D7005A9642 /* NSString+AESCrypt.m in Sources */,
 				141F5CA9195AD263007612C0 /* LoginViewController.swift in Sources */,
 				59AC7DDC1977A84B00457944 /* ChangePasswordViewController.swift in Sources */,
 				593EFF721974F4DD00816DBE /* SecureNotesViewController.swift in Sources */,

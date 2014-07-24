@@ -113,8 +113,8 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
         
          NSUserDefaults.standardUserDefaults().setObject(fname, forKey:"FirstName")
          NSUserDefaults.standardUserDefaults().setObject(lName, forKey:"LastName")
-         NSUserDefaults.standardUserDefaults().setObject(email, forKey:"Email")
-         NSUserDefaults.standardUserDefaults().setObject(pass, forKey:"Password")
+         NSUserDefaults.standardUserDefaults().setObject(api_Database.encryptedString(email, KEYEncryption), forKey:"Email")
+         NSUserDefaults.standardUserDefaults().setObject(api_Database.encryptedString(pass, KEYEncryption), forKey:"Password")
          NSUserDefaults.standardUserDefaults().synchronize()
         
         fname = nil
@@ -122,7 +122,8 @@ class RegisterViewController : UIViewController,UITextFieldDelegate {
         pass = nil
         email = nil
         
-        NSUserDefaults.standardUserDefaults().setValue("Register", forKey: "Login")
+        NSUserDefaults.standardUserDefaults().setValue("Register", forKey: "Register")
+        NSUserDefaults.standardUserDefaults().setValue("Login", forKey: "Login")
         
         var homeOBj=self.storyboard.instantiateViewControllerWithIdentifier("Home") as HomeMenuViewController
         homeOBj.navigationItem.hidesBackButton=true

@@ -56,7 +56,7 @@ class HomeMenuViewController: UIViewController,UITableViewDataSource,UITableView
             settingOBJ.navigationItem.hidesBackButton=true
             self.navigationController.pushViewController(settingOBJ, animated: false)
         }
-        //println(self.app_obj.tabTaggedTag)
+       
     }
     func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!)
     {

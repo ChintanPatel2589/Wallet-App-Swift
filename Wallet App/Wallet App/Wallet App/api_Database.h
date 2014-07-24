@@ -21,9 +21,12 @@
 @property(nonatomic,retain) NSArray *dataArray;
 
 
-
 //for Database
-
+//Encryption Method
++ (NSData *)base64DataFromString: (NSString *)string;
++(NSString *)encryptedString : (NSString *)strForEnrypt : (NSString *)key;
++(NSString *)decryptedString : (NSString *)strForDecrypt : (NSString *)key;
+//========================================================
 +(NSString *)generateRandomnumber;
 +(NSString *) getDatabasePath:(NSString *)dbName; 
 +(BOOL)validEmail:(NSString *)email;

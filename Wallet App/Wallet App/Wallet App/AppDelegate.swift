@@ -50,23 +50,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        if NSUserDefaults.standardUserDefaults().valueForKey("Login") as String != "NotRegister"
+        if NSUserDefaults.standardUserDefaults().valueForKey("Register") as String == "Register"
         {
-            //println("regster")
-            let homeOBJ = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("login") as LoginViewController
-            //[[self.navigationController viewControllers] lastObject];
-           // var newTmpNav = UINavigationController(rootViewController: homeOBJ)
-
-            if self.nav?.presentedViewController
+            if NSUserDefaults.standardUserDefaults().valueForKey("Login") as String == "Login"
             {
-                self.nav?.presentedViewController.dismissViewControllerAnimated(false, completion: {
-                    println("dismiss")
+                let homeOBJ = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("login") as LoginViewController
+                homeOBJ.isFromBackground = true
+                var newTmpNav = UINavigationController(rootViewController: homeOBJ)
+                
+                if self.nav?.presentedViewController
+                {
+                    self.nav?.presentedViewController.dismissViewControllerAnimated(false, completion: {
+                        println("dismiss")
+                        self.nav?.presentViewController(newTmpNav, animated: false, completion: nil)
+                        })
+                }
+                else
+                {
                     self.nav?.presentViewController(newTmpNav, animated: false, completion: nil)
-                    })
-            }
-            else
-            {
-                self.nav?.presentViewController(newTmpNav, animated: false, completion: nil)
+                }
             }
         }
     }

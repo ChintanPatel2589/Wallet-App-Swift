@@ -15,16 +15,17 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet var lblErrorMsg : UILabel
     var newLoginPass = ""
     var myMail: MFMailComposeViewController!
-    
+    var isFromBackground = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title="Login"
-        
+        NSUserDefaults.standardUserDefaults().setValue("NotLogin", forKey: "Login")
         btnLogin.layer.borderWidth=3
         btnLogin.layer.borderColor=UIColor.whiteColor().CGColor
         btnLogin.layer.cornerRadius=btnLogin.frame.size.width/2
         
-        
+       // println(api_Database.encryptedString("hello", KEYEncryption))
+       // println(api_Database.decryptedString(api_Database.encryptedString("hello", KEYEncryption), KEYEncryption))
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool)
@@ -42,21 +43,39 @@ class LoginViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     @IBAction func login()
     {
-        if (NSUserDefaults.standardUserDefaults().valueForKey("Password") as String) == txtPass.text
+        
+        if self.isFromBackground
         {
-            //println("success")
-            var homeOBj=self.storyboard.instantiateViewControllerWithIdentifier("Home") as HomeMenuViewController
-            var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem=backBtn
-            homeOBj.navigationItem.hidesBackButton=true
-            self.navigationController.pushViewController(homeOBj, animated: true)
-            self.lblErrorMsg.hidden=true
-            NSUserDefaults.standardUserDefaults().setValue("Login", forKey: "Login")
+            if (api_Database.decryptedString(NSUserDefaults.standardUserDefaults().valueForKey("Password") as String, KEYEncryption)) == txtPass.text
+            {
+                //println("success")
+                self.dismissViewControllerAnimated(true, completion: nil)
+                NSUserDefaults.standardUserDefaults().setValue("Login", forKey: "Login")
+            }
+            else
+            {
+                self.lblErrorMsg.hidden=false
+            }
         }
         else
         {
-          self.lblErrorMsg.hidden=false
+            if (api_Database.decryptedString(NSUserDefaults.standardUserDefaults().valueForKey("Password") as String, KEYEncryption)) == txtPass.text
+            {
+                //println("success")
+                var homeOBj=self.storyboard.instantiateViewControllerWithIdentifier("Home") as HomeMenuViewController
+                var backBtn = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+                self.navigationItem.backBarButtonItem=backBtn
+                homeOBj.navigationItem.hidesBackButton=true
+                self.navigationController.pushViewController(homeOBj, animated: true)
+                self.lblErrorMsg.hidden=true
+                NSUserDefaults.standardUserDefaults().setValue("Login", forKey: "Login")
+            }
+            else
+            {
+                self.lblErrorMsg.hidden=false
+            }
         }
+        
     }
 //    func textFieldDidBeginEditing(textField: UITextField!)
 //    {

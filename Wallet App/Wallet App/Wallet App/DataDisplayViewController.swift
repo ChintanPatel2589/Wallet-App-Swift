@@ -185,7 +185,6 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
             lblDesc.textAlignment=NSTextAlignment.Left
             lblDesc.font=UIFont(name: "HelveticaNeue", size: 15)
             cell!.addSubview(lblDesc)
-           
         }
         else
         {
@@ -197,28 +196,32 @@ class DataDisplayViewController: UIViewController,UITableViewDataSource,UITableV
         {
             if self.selectedItem as String == "Web Login"
             {
-                lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("AccountName") as String
-                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String
+                lblTitle.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("AccountName") as String, KEYEncryption)) as String
+                lblDesc.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String, KEYEncryption)) as String
             }
             else if self.selectedItem as String == "ID or Passport"
             {
-                lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String
-                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Country") as String
+                lblTitle.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String, KEYEncryption)) as String
+                lblDesc.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Country") as String, KEYEncryption)) as String
             }
             else if self.selectedItem as String == "Software License"
             {
-                lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("SoftwareName") as String
-                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("CompanyNmae") as String
+               // lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("SoftwareName") as String
+               // lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("CompanyNmae") as String
+                lblTitle.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("SoftwareName") as String, KEYEncryption)) as String
+            lblDesc.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("CompanyNmae") as String, KEYEncryption)) as String
             }
             else if self.selectedItem as String == "Secure Notes"
             {
-                lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String
-                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Notes") as String
+                lblTitle.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String, KEYEncryption)) as String
+               // lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Notes") as String
+                lblDesc.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Notes") as String, KEYEncryption)) as String
             }
             else
             {
-                lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("BankName") as String
-                lblDesc.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String
+                //lblTitle.text=(arrayDataList.objectAtIndex(indexPath.row)).valueForKey("BankName") as String
+                 lblTitle.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("BankName") as String, KEYEncryption)) as String
+                lblDesc.text=(api_Database.decryptedString((arrayDataList.objectAtIndex(indexPath.row)).valueForKey("Name") as String, KEYEncryption)) as String
             }
             cell!.accessoryType=UITableViewCellAccessoryType.DisclosureIndicator
             cell!.selectionStyle=UITableViewCellSelectionStyle.None

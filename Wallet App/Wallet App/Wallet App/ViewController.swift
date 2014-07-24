@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var isTraditional = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSUserDefaults.standardUserDefaults().setValue("NotRegister", forKey: "Login")
+        NSUserDefaults.standardUserDefaults().setValue("NotRegister", forKey: "Register")
         btnLogin.layer.borderWidth=1
         btnLogin.layer.borderColor=UIColor.redColor().CGColor
         btnLogin.layer.cornerRadius=10
